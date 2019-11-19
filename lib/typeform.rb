@@ -3,9 +3,9 @@ class Typeform
   base_uri 'https://api.typeform.com'
 
   def initialize
-    @key = "Aq4BeT8hvJokvrGJurAym2DyNYhoCozA2n7vsP1RiU1v"
-    @auth = "Bearer #{@key}"
-    @headers = { "Authorization" => @auth }
+    key = ENV["TYPEFORM_KEY"]
+    auth = "Bearer #{key}"
+    @headers = { "Authorization" => auth }
   end
 
   def me
@@ -26,5 +26,9 @@ class Typeform
 
   def create_form(body)
     Typeform.post("/forms", headers: @headers, body: body.to_json)
+  end
+
+  def responses(form_id)
+    Typeform.get("/forms/#{form_id}/responses", headers: @headers)
   end
 end
