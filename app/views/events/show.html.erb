@@ -1,0 +1,7 @@
+<h1><%= @event.title %></h1>
+<p>In <%= @event.location %></p>
+<p>From <%= @event.start_time %> to <%= @event.end_time %></p>
+<p><%= @event.guests %> Guests are invited</p>
+
+<%= link_to "Edit Event", edit_event_path(@event)%>
+<%= link_to "Delete Event", events_path, method: :delete, data: {confirm: "Are you sure?"} %>
