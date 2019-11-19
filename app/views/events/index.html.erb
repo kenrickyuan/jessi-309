@@ -1,0 +1,11 @@
+<h1>All your Events</h1>
+<% @events.each do |event| %>
+<div class="event"><h2><%= link_to event.title, event_path(event) %></h2>
+<p>From<%= event.start_time %> to <%= event.end_time %></p>
+<% end %>
+</div>
+<% if @events.empty? %>
+<%= link_to "Create an Event", new_event_path %>
+<% else %>
+<%= link_to "Create another Event", new_event_path %>
+<% end %>

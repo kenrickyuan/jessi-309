@@ -1,0 +1,18 @@
+<h1 class="form-h1">Create Your Event</h1>
+
+      <%= simple_form_for @event, html: { multipart: true } do |f| %>
+        <div class="form-inputs">
+          <%= f.input :title %>
+          <%= f.input :location %>
+          <div class="form-inputs-numbers d-flex">
+            <%= f.input :start_time%>
+            <%= f.input :end_time%>
+            <%= f.input :guests %>
+          </div>
+        </div>
+
+     <div class="form-submit-btn d-flex justify-content-between">
+
+      <%= f.button :submit, "Create Event", { class: 'login-btn' , id: 'new-event-btn'}  %>
+    </div>
+    <% end %>
