@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_11_20_133756) do
   create_table "expenses", force: :cascade do |t|
     t.bigint "event_id"
     t.string "description"
-    t.integer "amount"
+    t.integer "amount_cents", default: 0, null: false
     t.bigint "guest_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

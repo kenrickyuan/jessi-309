@@ -17,7 +17,7 @@ class ExpensesController < ApplicationController
   end
 
   def index
-    @expenses = Expense.where(event_id: params[:event_id])
+    @expenses = @event.expenses
     @guests_by_id = allocate_guests
     filter_by_description if params[:search] && params[:search][:description].present?
     filter_by_guest if params[:search] && params[:search][:guest].present?
@@ -54,8 +54,7 @@ class ExpensesController < ApplicationController
   end
 
   def set_guests
-    # Can I call @expense.guests instead of this method?
-    @guests = Guest.where(event_id: params[:event_id])
+    @guests = @event.guests
   end
 
   def filter_by_description
@@ -103,19 +102,18 @@ class ExpensesController < ApplicationController
     negative_balances = []
     @balance_per_guest.each do |key, value|
       if value > 0
-        positive_balances << { key: value }
+        positive_balances << { key => value }
       else
-        negative_balances << { key: value }
+        negative_balances << { key => value }
       end
     end
     positive_balances.each do |positive_balance|
-      while positive_balance.values.first > 0
+      while positive_balance.values.first != 0
         negative_balances.each do |negative_balance|
           positive_balance.values.first + negative_balance.values.first
         end
       end
     end
-    raise
   end
 
 end
