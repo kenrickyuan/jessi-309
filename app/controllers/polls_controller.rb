@@ -12,6 +12,10 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
+    typeform = @poll.typeform_id
+    typeform_api = Typeform.new
+    response = typeform_api.form(typeform)
+    show = response.parsed_response[:items]
   end
 
   # GET /polls/new
@@ -30,22 +34,31 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     @event = Event.find(params[:event_id])
     @poll.event = @event
+    choic = []
 
-    body_email = {
-      "title": "#{@poll.form_title}",
+    params["choices"].each do |choice|
+      choic << { label:choice }
+    end
+
+    body = {
+      "title": "#{@event.title}",
       "fields": [ {
-      "title": "#{@poll.field_title}",
-      "type": "#{@poll.field_type}"
-      }, {
-      "title": "And your Phonenumber?",
-      "type": "phone_number"}
-      ]
-    }
+        "title": "#{@poll.question}",
+        "type": "multiple_choice",
+        "properties": {
+          "description": "Which location/s do you prefer?",
+          "allow_multiple_selection": true,
+          "allow_other_choice": true,
+          "choices": choic
+       }
+     }
+   ]
+ }
 
-    typeform_api = Typeform.new
-    response = typeform_api.create_form(body_email)
-    @poll.link = response.parsed_response["_links"]["display"]
-
+ typeform_api = Typeform.new
+ response = typeform_api.create_form(body)
+ @poll.link = response.parsed_response["_links"]["display"]
+ @poll.typeform_id = response.parsed_response["id"]
  respond_to do |format|
   if @poll.save!
 

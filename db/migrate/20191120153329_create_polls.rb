@@ -6,10 +6,10 @@ class CreatePolls < ActiveRecord::Migration[5.2]
       t.string :link
       #title:
       t.string :form_title
-      #field_title:
-      t.string :field_title
-      #limited to : email, phonenumber, multiple choice
-      t.string :field_type
+      #title:
+      t.string :question
+      #label:
+      t.string :option
       t.references :event, foreign_key: true
 
       t.timestamps
