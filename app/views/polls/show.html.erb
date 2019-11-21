@@ -7,7 +7,7 @@
 
 <p>
   <strong>Event:</strong>
-  <%= @poll.event %>
+  <%= @poll.event.title%>
 </p>
 
 <p>
@@ -16,9 +16,29 @@
 </p>
 
 <p>
-  <strong></strong>
+  <strong>Answers</strong>
+  Total : <%= @length %>
+  <table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Votes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @count.each do |key, value| %>
+      <tr>
+        <td><%= "#{key.to_s}" %></td>
+        <td><%= "#{value.to_s}"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 </p>
 
-<%= link_to "Delete Poll", event_poll_path(@event, @poll), method: :delete %>
+<%= link_to "Delete Poll", event_polls_path(@event, @poll), method: :delete %>
 <%= link_to 'Edit', edit_event_poll_path(@event, @poll) %> |
 <%= link_to 'Back', event_polls_path(@event) %>
