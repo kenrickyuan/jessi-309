@@ -67,4 +67,5 @@ ActiveRecord::Schema.define(version: 2019_11_20_153329) do
   add_foreign_key "expenses", "events"
   add_foreign_key "expenses", "guests"
   add_foreign_key "polls", "events"
+
 end
