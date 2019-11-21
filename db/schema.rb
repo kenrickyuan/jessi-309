@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_104115) do
+ActiveRecord::Schema.define(version: 2019_11_20_153329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,9 +20,20 @@ ActiveRecord::Schema.define(version: 2019_11_20_104115) do
     t.string "location"
     t.date "start_time"
     t.date "end_time"
-    t.integer "guests"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "description"
+    t.integer "amount"
+    t.bigint "guest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_expenses_on_event_id"
+    t.index ["guest_id"], name: "index_expenses_on_guest_id"
   end
 
   create_table "guests", force: :cascade do |t|
@@ -30,6 +41,15 @@ ActiveRecord::Schema.define(version: 2019_11_20_104115) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "typeform_id"
+    t.bigint "event_id"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_polls_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +64,7 @@ ActiveRecord::Schema.define(version: 2019_11_20_104115) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "expenses", "events"
+  add_foreign_key "expenses", "guests"
+  add_foreign_key "polls", "events"
 end
