@@ -1,6 +1,7 @@
 
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show]
   # GET /polls
   # GET /polls.json
   def index
@@ -29,11 +30,12 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     @event = Event.find(params[:event_id])
     @poll.event = @event
+
     body_email = {
-      "title": "#{@event.title}",
+      "title": "#{@poll.form_title}",
       "fields": [ {
-      "title": "Please put in your email adress?",
-      "type": "email"
+      "title": "#{@poll.field_title}",
+      "type": "#{@poll.field_type}"
       }, {
       "title": "And your Phonenumber?",
       "type": "phone_number"}
@@ -42,19 +44,16 @@ class PollsController < ApplicationController
 
     typeform_api = Typeform.new
     response = typeform_api.create_form(body_email)
-    #@poll.link = response.parsed_response["theme"]["href"]
- #byebug
+    @poll.link = response.parsed_response["_links"]["display"]
 
  respond_to do |format|
   if @poll.save!
 
-    format.html { redirect_to event_polls_path(@event, @poll), notice: 'Poll was successfully created.' }
-    format.json { render :show, status: :created, location: @poll }
+    format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
   else
     format.html { render :new }
-    format.json { render json: @poll.errors, status: :unprocessable_entity }
   end
-  @poll.link = response.parsed_response["theme"]["href"]
+  #@poll.link = response.parsed_response["theme"]["href"]
 end
 end
 
@@ -88,8 +87,12 @@ end
       @poll = Poll.find(params[:id])
     end
 
+    def set_event
+      @event = Event.find(params[:event_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:typeform_id, :event_id)
+      params.require(:poll).permit(:typeform_id, :event_id, :link, :form_title, :field_type, :field_title)
     end
   end

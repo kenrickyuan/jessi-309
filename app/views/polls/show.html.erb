@@ -2,7 +2,7 @@
 
 <p>
   <strong>Typeform:</strong>
-  <%= @poll.typeform_id %>
+  <%= @poll.form_title %>
 </p>
 
 <p>
@@ -10,5 +10,5 @@
   <%= @poll.event %>
 </p>
 
-<%= link_to 'Edit', edit_poll_path(@poll) %> |
-<%= link_to 'Back', polls_path %>
+<%= link_to 'Edit', edit_event_poll_path(@event, @poll) %> |
+<%= link_to 'Back', event_polls_path(@event) %>

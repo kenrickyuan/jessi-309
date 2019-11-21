@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 2019_11_20_153329) do
     t.string "typeform_id"
     t.bigint "event_id"
     t.string "link"
+    t.string "form_title"
+    t.string "field_title"
+    t.string "field_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_polls_on_event_id"
