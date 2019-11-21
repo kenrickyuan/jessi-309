@@ -17,5 +17,5 @@ Event.create!(
   location: "Amsterdam",
   start_time: "2015-12-08 10:19:00 -0200",
   end_time: "2015-12-08 10:19:00 -0200",
-  guests: 13
+  description: "All shit!"
   )

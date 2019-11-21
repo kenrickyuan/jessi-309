@@ -1,3 +1,6 @@
+
+require 'httparty'
+
 class Typeform
   include HTTParty
   base_uri 'https://api.typeform.com'
