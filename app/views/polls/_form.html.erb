@@ -5,8 +5,15 @@
 
   <div class="form-inputs">
     <%= f.input :form_title %>
-    <%= f.input :field_title %>
-    <%= f.input :field_type, collection: ["email", "phonenumber", "multiple_choice"] %>
+    <div id="choices">
+      <label for="1">Option 1</label>
+      <input name="choices[]" type="text" id="1"/>
+      <label for="2">Option 2</label>
+      <input name="choices[]" type="text" id="2"/>
+      <label for="3">Option 3</label>
+      <input name="choices[]" type="text" id="3"/>
+    </div>
+    <button type="button" class="btn btn-white add-choice-btn">Add another Choice</button>
   </div>
 
   <div class="form-actions">
