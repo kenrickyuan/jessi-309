@@ -1,0 +1,27 @@
+Expenses for <%= @event.title %>
+<ul>
+  <% @expenses.each do |expense| %>
+    <li>
+      <%= expense.description %>
+      <%= expense.amount %>
+      <%= expense.guest.name %>
+    </li>
+  <% end %>
+</ul>
+
+Guests balance
+<ul>
+  <% @balance_per_guest.each do |key, value| %>
+    <li>
+      <%= @guests_by_id[key] %>
+      <%= value %> EUR
+    </li>
+  <% end %>
+</ul>
+
+<!-- Form to filter the expenses by description and/or guest -->
+<%= simple_form_for :search, url: event_expenses_path, method: "GET" do |f| %>
+  <%= f.input :description %>
+  <%= f.input :guest, collection: Guest.all %>
+  <%= f.submit "Filter expenses" %>
+<% end %>
