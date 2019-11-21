@@ -14,8 +14,21 @@ class PollsController < ApplicationController
   def show
     typeform = @poll.typeform_id
     typeform_api = Typeform.new
-    response = typeform_api.form(typeform)
-    show = response.parsed_response[:items]
+    response = typeform_api.responses(typeform)
+
+    responses = []
+    show = response.parsed_response["items"]
+    show.each do |elements|
+      elements["answers"].each do |answer|
+        responses << answer["choices"]["labels"]
+      end
+    end
+    @count = Hash.new(0)
+    responses.flatten.each do |label|
+      @count[label] += 1
+    end
+    @count
+    @length = show.length
   end
 
   # GET /polls/new
@@ -50,22 +63,22 @@ class PollsController < ApplicationController
           "allow_multiple_selection": true,
           "allow_other_choice": true,
           "choices": choic
-       }
-     }
-   ]
- }
+        }
+      }
+    ]
+  }
 
- typeform_api = Typeform.new
- response = typeform_api.create_form(body)
- @poll.link = response.parsed_response["_links"]["display"]
- @poll.typeform_id = response.parsed_response["id"]
- respond_to do |format|
-  if @poll.save!
+  typeform_api = Typeform.new
+  response = typeform_api.create_form(body)
+  @poll.link = response.parsed_response["_links"]["display"]
+  @poll.typeform_id = response.parsed_response["id"]
+  respond_to do |format|
+    if @poll.save!
 
-    format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
-  else
-    format.html { render :new }
-  end
+      format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
+    else
+      format.html { render :new }
+    end
   #@poll.link = response.parsed_response["theme"]["href"]
 end
 end
