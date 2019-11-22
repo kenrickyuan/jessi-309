@@ -5,10 +5,6 @@
   <div id="guests">
   <label for="1">Guest 1</label>
   <input name="guests[]" type="text" id="guest1"/>
-  <label for="2">Guest 2</label>
-  <input name="guests[]" type="text" id="guest2"/>
-  <label for="3">Guest 3</label>
-  <input name="guests[]" type="text" id="guest3"/>
 </div>
 </div>
 <button type="button" class="btn btn-white add-guest-btn">Add another Guest</button>
@@ -16,7 +12,7 @@
 
 <div class="form-submit-btn d-flex justify-content-between">
 
-  <%= f.button :submit, "Add Guests", { class: 'login-btn' , id: 'new-event-btn'}  %>
+  <%= f.button :submit, "Add to Guestlist", { class: 'login-btn' , id: 'new-event-btn'}  %>
 </div>
 <% end %>
 
