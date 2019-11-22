@@ -1,27 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Polls</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Formtitle</th>
-      <th>Link to Copy</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @polls.each do |poll| %>
-      <tr>
-        <td><%= link_to poll.form_title, event_poll_path(@event, poll) %></td>
-        <td><%= poll.link %></td>
-        <td><%= link_to "Preview Form", poll.link, target: :_blank %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Poll', new_event_poll_path(@event) %>
+<div class="main-container-polls">
+  <p id="notice"><%= notice %></p>
+    <table>
+    <tbody>
+      <% @polls.each do |poll| %>
+        <tr>
+          <td class="poll-card"><%= link_to poll.form_title, event_poll_path(@event, poll) %></td>
+          <td class="poll-card"><%= poll.link %></td>
+          <td class="poll-card"><%= link_to "Preview Form", poll.link, target: :_blank %></td>
+        </tr>
+    </tbody>
+  </table>
+  <div class= "poll-card"> <%= link_to 'New Poll', new_event_poll_path(@event), class: "create-poll-btn" %>
+      <% end %>
+</div>

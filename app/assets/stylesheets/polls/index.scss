@@ -1,0 +1,23 @@
+
+
+.main-container-polls{
+  background: white;
+  font-size: 15px;
+  line-height: 27px;
+
+  color: #472B62;
+}
+
+.poll-card{
+  display: flex;
+}
+
+.create-poll-btn{
+  text-align: center;
+  background: #472B62;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 19.5px;
+  color: white;
+  width: -webkit-fill-available;
+
+}
