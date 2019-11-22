@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    set_event_link
   end
 
   def new
@@ -46,14 +47,14 @@ class EventsController < ApplicationController
 
   def set_event_link
     # time is currently in the wrong format but I will change that later
-    start_date = u(:start_time)
-    end_date = u(:end_time)
-    title = u(:title)
-    description = u(:description)
-    location = u(:location)
+    start_date = CGI.escape(@event.start_time.strftime("%m/%d/%Y"))
+    end_date = CGI.escape(@event.end_time.strftime("%m/%d/%Y"))
+    title = CGI.escape(@event.title)
+    description = CGI.escape(@event.description)
+    location = CGI.escape(@event.location)
     # client= key is the api key from addevent.com
     @link_google = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
     @link_apple = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
-    return @link_apple && @link_google
+    @link_apple && @link_google
   end
 end
