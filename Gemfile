@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'httparty'
+gem 'datetime_picker_input'
 gem 'money-rails'
 
 group :development do
