@@ -20,7 +20,13 @@ class PollsController < ApplicationController
     show = response.parsed_response["items"]
     show.each do |elements|
       elements["answers"].each do |answer|
+        if !answer["choices"]["other"].nil?
+        responses << answer["choices"]["other"]
+      end
+        if !answer["choices"]["labels"].nil?
         responses << answer["choices"]["labels"]
+      end
+
       end
     end
     @count = Hash.new(0)
