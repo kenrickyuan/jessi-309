@@ -3,7 +3,9 @@
 <p>From <%= @event.start_time %> to <%= @event.end_time %></p>
 <p><%= @event.description %></p>
 <p>Your Guests are: <% @event.guests.each do |guest| %>
-  <%= guest.name %>
+ <ul>
+  <li><%= guest.name %></li><li><%= link_to "Delete Guest", event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %></li>
+ </ul>
   <% end %>
 </p>
 <%= link_to "Add Guests", new_event_guest_path(@event) %>
