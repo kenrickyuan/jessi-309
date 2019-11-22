@@ -17,6 +17,7 @@
         <td><%= link_to poll.form_title, event_poll_path(@event, poll) %></td>
         <td><%= poll.link %></td>
         <td><%= link_to "Preview Form", poll.link, target: :_blank %></td>
+        <td><%= link_to "Delete Poll", event_poll_path(@event, poll), method: :delete, data: {confirm: "Are you sure?"} %></td>
       </tr>
     <% end %>
   </tbody>
