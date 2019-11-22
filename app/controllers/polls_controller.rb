@@ -1,7 +1,7 @@
 
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
-  before_action :set_event, only: [:show]
+  before_action :set_event, only: [:show, :destroy]
   # GET /polls
   # GET /polls.json
   def index
@@ -100,9 +100,12 @@ end
   # DELETE /polls/1
   # DELETE /polls/1.json
   def destroy
+    typeform_api = Typeform.new
+    id = @poll.typeform_id
+    response = typeform_api.delete_form(id)
     @poll.destroy
     respond_to do |format|
-      format.html { redirect_to polls_url, notice: 'Poll was successfully destroyed.' }
+      format.html { redirect_to event_polls_url(@event), notice: 'Poll was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
