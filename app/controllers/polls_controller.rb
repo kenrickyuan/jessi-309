@@ -60,19 +60,19 @@ class PollsController < ApplicationController
     end
 
     body = {
-      "title": "#{@event.title}",
-      "fields": [ {
-        "title": "#{@poll.question}",
-        "type": "multiple_choice",
-        "properties": {
-          "description": "Which location/s do you prefer?",
-          "allow_multiple_selection": true,
-          "allow_other_choice": true,
-          "choices": choic
-        }
-      }
-    ]
+  "title": "#{@event.title}",
+  "fields": [ {
+  "title": "Choose:",
+  "type": "multiple_choice",
+  "properties": {
+    "description": "#{@poll.question}",
+    "allow_multiple_selection": true,
+    "allow_other_choice": true,
+    "choices": choic
+    }
   }
+  ]
+}
 
   typeform_api = Typeform.new
   response = typeform_api.create_form(body)
@@ -128,6 +128,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:typeform_id, :event_id, :link, :form_title, :field_type, :field_title)
+      params.require(:poll).permit(:typeform_id, :event_id, :link, :form_title, :question)
     end
   end
