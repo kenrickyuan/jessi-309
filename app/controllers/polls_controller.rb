@@ -5,8 +5,8 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all
     @event = Event.find(params[:event_id])
+    @polls = @event.polls
   end
 
   # GET /polls/1
