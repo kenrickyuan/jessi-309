@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_133756) do
+ActiveRecord::Schema.define(version: 2019_11_21_182519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 2019_11_20_133756) do
     t.index ["event_id"], name: "index_guests_on_event_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "expense_id"
+    t.bigint "payer_id"
+    t.bigint "payee_id"
+    t.integer "amount_cents", default: 0, null: false
+    t.boolean "is_debt", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_id"], name: "index_transactions_on_expense_id"
+    t.index ["payee_id"], name: "index_transactions_on_payee_id"
+    t.index ["payer_id"], name: "index_transactions_on_payer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,4 +73,7 @@ ActiveRecord::Schema.define(version: 2019_11_20_133756) do
   add_foreign_key "expenses", "events"
   add_foreign_key "expenses", "guests"
   add_foreign_key "guests", "events"
+  add_foreign_key "transactions", "expenses"
+  add_foreign_key "transactions", "guests", column: "payee_id"
+  add_foreign_key "transactions", "guests", column: "payer_id"
 end
