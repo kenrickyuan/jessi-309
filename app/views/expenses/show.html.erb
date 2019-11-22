@@ -1,0 +1,33 @@
+<%= @expense[:description] %>
+
+<!-- The expense -->
+<ul>
+  <li>
+    <%= @expense.guest.name %> paid <%= @expense.amount %> for <%= @expense.description %>
+  </li>
+  <% @transactions.each do |expense_id, transactions| %>
+    <% transactions.each do |transaction| %>
+      <% unless transaction.is_debt %>
+        <li>
+          <%= transaction.payer.name %> paid <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <!-- Transactions for this expense -->
+  <% unless @transactions[@expense.id] == nil %>
+    <% @transactions[@expense.id].each do |transaction| %>
+      <li>
+        <%= transaction.payer.name %> owes <%= transaction.payee.name %> <%= transaction.amount %> for <%= @expense.description %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<!-- New transaction -->
+<%= link_to "Settle up", new_event_expense_transaction_path(params[:event_id], @expense) %>
+
+<!-- Delete this expense -->
+<%= link_to "Delete this expense", event_expense_path(@event, @expense),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
