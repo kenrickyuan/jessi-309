@@ -2,6 +2,14 @@
 <p>In <%= @event.location %></p>
 <p>From <%= @event.start_time %> to <%= @event.end_time %></p>
 <p><%= @event.description %></p>
-
+<p>Your Guests are: <% @event.guests.each do |guest| %>
+ <ul>
+  <li><%= guest.name %></li><li><%= link_to "Delete Guest", event_guest_path(@event, guest), method: :delete, data: {confirm: "Are you sure?"} %></li>
+ </ul>
+  <% end %>
+</p>
+<%= link_to "Add Guests", new_event_guest_path(@event) %>
+<%= link_to "All Expenses for this Event", event_expenses_path(@event) %>
+<%= link_to "All Polls for this Event", event_polls_path(@event) %>
 <%= link_to "Edit Event", edit_event_path(@event)%>
-<%= link_to "Delete Event", events_path, method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "Delete Event", event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %>

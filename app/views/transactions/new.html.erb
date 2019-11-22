@@ -1,0 +1,8 @@
+New transaction:
+Who paid <%= @expense.guest.name %> for <%= @expense[:description] %> and how much?
+
+<%= simple_form_for [@event, @expense, @transaction] do |f| %>
+  <%= f.association :payer, collection: @guests %>
+  <%= f.input :amount %>
+  <%= f.submit "Add transaction" %>
+<% end %>

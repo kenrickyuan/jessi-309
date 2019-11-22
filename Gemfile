@@ -16,8 +16,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'httparty'
-gem 'monetize'
 gem 'datetime_picker_input'
+gem 'money-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
