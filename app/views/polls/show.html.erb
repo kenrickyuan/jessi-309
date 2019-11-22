@@ -39,6 +39,5 @@
 
 </p>
 
-<%= link_to "Delete Poll", event_polls_path(@event, @poll), method: :delete %>
-<%= link_to 'Edit', edit_event_poll_path(@event, @poll) %> |
+<%= link_to "Delete Poll", event_polls_path(@event, @poll), method: :delete, data: {confirm: "Are you sure?"} %>
 <%= link_to 'Back', event_polls_path(@event) %>

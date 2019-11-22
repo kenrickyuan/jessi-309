@@ -14,18 +14,18 @@ class GuestsController < ApplicationController
 
   def create
     guests = params[:guests]
-    guests.each_with_index do |guest, i|
-      c = guest.size
+    @errors = []
+    guests.each do |guest|
+
       @guest = Guest.new(name: guest, event: @event)
-      if i != (c - 1)
-        @guest.save
-      else
-        if @guest.save
-          redirect_to event_path(@event, @guest)
-        else
-          render "events/show"
+        unless @guest.save
+          @errors << "Error: #{@guest.errors.full_messages}"
         end
-      end
+    end
+    if @errors.empty?
+      redirect_to event_path(@event, @guest)
+    else
+      render :new
     end
   end
 
