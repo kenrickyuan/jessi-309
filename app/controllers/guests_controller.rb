@@ -13,12 +13,19 @@ class GuestsController < ApplicationController
   end
 
   def create
-    @guest = Guest.new(guest_params)
-    @guest.event = @event
-    if @guest.save
-      redirect_to event_guests_path(@event, @guest)
-    else
-      render "events/show"
+    guests = params[:guests]
+    guests.each_with_index do |guest, i|
+      c = guest.size
+      @guest = Guest.new(name: guest, event: @event)
+      if i != (c - 1)
+        @guest.save
+      else
+        if @guest.save
+          redirect_to event_path(@event, @guest)
+        else
+          render "events/show"
+        end
+      end
     end
   end
 
@@ -40,7 +47,7 @@ class GuestsController < ApplicationController
   private
 
   def set_event
-    @event = Even.find(params[:event_id])
+    @event = Event.find(params[:event_id])
   end
 
   def set_guest
@@ -48,6 +55,6 @@ class GuestsController < ApplicationController
   end
 
   def guest_params
-    params.require("guest").permit(:name, :email)
+    params.require("guest").permit(:name)
   end
 end

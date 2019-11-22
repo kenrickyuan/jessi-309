@@ -2,6 +2,7 @@
 <% @events.each do |event| %>
 <div class="event"><h2><%= link_to event.title, event_path(event) %></h2>
 <p>From<%= event.start_time %> to <%= event.end_time %></p>
+<%= link_to "Delete Event", events_path, method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 </div>
 <% if @events.empty? %>
