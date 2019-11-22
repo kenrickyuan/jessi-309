@@ -15,7 +15,7 @@ User.create!(
 Event.create!(
   title: "Our First Product Pitch",
   location: "Amsterdam",
-  start_time: "2015-12-08 10:19:00 -0200",
-  end_time: "2015-12-08 10:19:00 -0200",
-  description: "All shit!"
+  start_time: "2019-12-08 10:19:00 -0200",
+  end_time: "2019-12-08 11:19:00 -0200",
+  description: "Bring your pampers!"
   )
