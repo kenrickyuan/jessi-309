@@ -55,6 +55,5 @@ class EventsController < ApplicationController
     # client= key is the api key from addevent.com
     @link_google = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
     @link_apple = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
-    @link_apple && @link_google
   end
 end
