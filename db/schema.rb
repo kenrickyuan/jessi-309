@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2019_11_21_182519) do
     t.index ["guest_id"], name: "index_expenses_on_guest_id"
   end
 
+  create_table "fields", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "poll_id"
+    t.string "title"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "guests", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -58,6 +67,18 @@ ActiveRecord::Schema.define(version: 2019_11_21_182519) do
     t.index ["payer_id"], name: "index_transactions_on_payer_id"
   end
 
+  create_table "polls", force: :cascade do |t|
+    t.string "typeform_id"
+    t.bigint "event_id"
+    t.string "link"
+    t.string "form_title"
+    t.string "question"
+    t.string "option"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_polls_on_event_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -76,4 +97,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_182519) do
   add_foreign_key "transactions", "expenses"
   add_foreign_key "transactions", "guests", column: "payee_id"
   add_foreign_key "transactions", "guests", column: "payer_id"
+  add_foreign_key "polls", "events"
+  add_foreign_key "fields", "events"
+  add_foreign_key "fields", "polls"
 end

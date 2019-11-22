@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Typeform:</strong>
+  <%= @poll.form_title %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @poll.event.title%>
+</p>
+
+<p>
+  <strong>Question</strong>
+  <%= @poll.question %>
+</p>
+
+<p>
+  <strong>Answers</strong>
+  Total : <%= @length %>
+  <table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Votes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @count.each do |key, value| %>
+      <tr>
+        <td><%= "#{key.to_s}" %></td>
+        <td><%= "#{value.to_s}"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</p>
+
+<%= link_to "Delete Poll", event_poll_path(@event, @poll), method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to 'Back', event_polls_path(@event) %>
