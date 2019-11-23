@@ -1,28 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared/navbar-expanded-polls' %>
+<div style="margin-top: 120px">
+  <p id="notice"><%= notice %></p>
 
-<h1>Polls</h1>
+  <h1>Polls</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Formtitle</th>
-      <th>Link to Copy</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <table>
+    <thead>
+      <tr>
+        <th>Formtitle</th>
+        <th>Link to Copy</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @polls.each do |poll| %>
+    <tbody>
+      <% @polls.each do |poll| %>
       <tr>
         <td><%= link_to poll.form_title, event_poll_path(@event, poll) %></td>
         <td><%= poll.link %></td>
         <td><%= link_to "Preview Form", poll.link, target: :_blank %></td>
         <td><%= link_to "Delete Poll", event_poll_path(@event, poll), method: :delete, data: {confirm: "Are you sure?"} %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Poll', new_event_poll_path(@event) %>
+  <%= link_to 'New Poll', new_event_poll_path(@event) %>
+</div>
