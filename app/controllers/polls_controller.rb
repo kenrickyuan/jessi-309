@@ -21,11 +21,11 @@ class PollsController < ApplicationController
     show.each do |elements|
       elements["answers"].each do |answer|
         if !answer["choices"]["other"].nil?
-        responses << answer["choices"]["other"]
-      end
+          responses << answer["choices"]["other"]
+        end
         if !answer["choices"]["labels"].nil?
-        responses << answer["choices"]["labels"]
-      end
+          responses << answer["choices"]["labels"]
+        end
 
       end
     end
@@ -60,31 +60,31 @@ class PollsController < ApplicationController
     end
 
     body = {
-  "title": "#{@event.title}",
-  "fields": [ {
-  "title": "Choose:",
-  "type": "multiple_choice",
-  "properties": {
-    "description": "#{@poll.question}",
-    "allow_multiple_selection": true,
-    "allow_other_choice": true,
-    "choices": choic
-    }
+      "title": "#{@event.title}",
+      "fields": [ {
+        "title": "Choose:",
+        "type": "multiple_choice",
+        "properties": {
+          "description": "#{@poll.question}",
+          "allow_multiple_selection": true,
+          "allow_other_choice": true,
+          "choices": choic
+        }
+      }
+    ]
   }
-  ]
-}
 
   typeform_api = Typeform.new
   response = typeform_api.create_form(body)
   @poll.link = response.parsed_response["_links"]["display"]
   @poll.typeform_id = response.parsed_response["id"]
   respond_to do |format|
-    if @poll.save!
+  if @poll.save!
 
-      format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
-    else
-      format.html { render :new }
-    end
+     format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
+   else
+    format.html { render :new }
+  end
   #@poll.link = response.parsed_response["theme"]["href"]
 end
 end
@@ -108,11 +108,10 @@ end
   def destroy
     typeform_api = Typeform.new
     id = @poll.typeform_id
-    response = typeform_api.delete_form(id)
     @poll.destroy
+    typeform_api.delete_form(id)
     respond_to do |format|
       format.html { redirect_to event_polls_url(@event), notice: 'Poll was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

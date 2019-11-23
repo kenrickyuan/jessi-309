@@ -2,6 +2,17 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   def index
     @events = Event.order('start_time')
+    @past = []
+    @pending = []
+    @current = []
+    @events.each do |event|
+      @past << event if event.end_time < Time.now
+      @pending << event if event.start_time > Time.now
+      @current << event if (event.start_time <= Time.now) && (event.end_time >= Time.now)
+    end
+    @past
+    @pending
+    @current
   end
 
   def show
