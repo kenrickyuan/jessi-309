@@ -1,31 +1,23 @@
-<%= @event.title %>
+<%= render 'shared/navbar-expanded-expenses' %>
+<div style="margin-top: 120px">
+  <%= @event.title %>
 
-<!-- Form to filter the expenses by description and/or guest -->
-<%= simple_form_for :search, url: event_expenses_path, method: "GET" do |f| %>
+  <!-- Form to filter the expenses by description and/or guest -->
+  <%= simple_form_for :search, url: event_expenses_path, method: "GET" do |f| %>
   <%= f.input :description, collection: @expenses, label_method: :description %>
   <%= f.input :guest, collection: Guest.all %>
   <%= f.submit "Filter expenses" %>
-<% end %>
+  <% end %>
 
-Expenses
-<ul>
-  <% @expenses.each do |expense| %>
+  Expenses
+  <ul>
+    <% @expenses.each do |expense| %>
     <li>
       <%= expense.guest.name %> paid <%= expense.amount %> for <%= expense.description %>
       <%= link_to "Show", event_expense_path(@event, expense) %>
     </li>
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
 
-<%= link_to "New expense", new_event_expense_path %>
-
-<ul>
-  Summary of guests' balance (for testing in development)
-  <% @balance_per_guest.each do |key, value| %>
-    <li>
-      <%= @guests_by_id[key] %>
-      <%= value %>
-    </li>
-  <% end %>
-</ul>
-
+  <%= link_to "New expense", new_event_expense_path %>
+</div>
