@@ -1,2 +1,16 @@
-<h1>Guests#edit</h1>
-<p>Find me in app/views/guests/createedit.html.erb</p>
+
+<h1 class="form-h1">Edit Guest</h1>
+
+<%= simple_form_for [@event, @guest], html: { multipart: true } do |f| %>
+<div class="form-inputs">
+  <%= f.input :name %>
+  <%= f.input :description %>
+</div>
+<button type="button" class="btn btn-white add-guest-btn">Edit Guest</button>
+</div>
+
+<div class="form-submit-btn d-flex justify-content-between">
+
+  <%= f.button :submit, "Add to Guestlist", { class: 'login-btn' , id: 'new-event-btn'}  %>
+</div>
+<% end %>

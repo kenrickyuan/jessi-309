@@ -27,8 +27,8 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      @guest = Guest.new(name: current_user.name, event: @event)
-      @guest.save
+      @guest1 = Guest.new(name: current_user.name, event: @event)
+      @guest1.save
       redirect_to events_path(@event)
     else
       render :new
