@@ -1,6 +1,6 @@
 class GuestsController < ApplicationController
   before_action :set_guest, only: [:show, :edit, :update, :destroy]
-  before_action :set_event, only: [:index, :new, :create, :edit, :update]
+  before_action :set_event, only: [:index, :show, :new, :create, :edit, :update]
   def index
     @guests = Guest.all
   end
@@ -32,11 +32,12 @@ class GuestsController < ApplicationController
 
   def edit
     @guest.event = @event
+
   end
 
   def update
     @guest.update(guest_params)
-    redirect_to event_guests_path(@event, @guest)
+    redirect_to event_path(@event)
   end
 
   def destroy
@@ -56,6 +57,6 @@ class GuestsController < ApplicationController
   end
 
   def guest_params
-    params.require("guest").permit(:name)
+    params.require("guest").permit(:name, :description)
   end
 end
