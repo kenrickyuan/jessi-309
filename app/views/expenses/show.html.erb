@@ -5,29 +5,31 @@
   <li>
     <%= @expense.guest.name %> paid <%= @expense.amount %> for <%= @expense.description %>
   </li>
-  <% @transactions.each do |expense_id, transactions| %>
-    <% transactions.each do |transaction| %>
-      <% unless transaction.is_debt %>
-        <li>
-          <%= transaction.payer.name %> paid <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
-        </li>
-      <% end %>
-    <% end %>
+  <!-- Each transaction -->
+  <% @transactions.each do |transaction| %>
+  <li>
+    <% if transaction.is_debt == true %>
+    <%= transaction.payer.name %> owes <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
+    <% else %>
+    <%= transaction.payer.name %> paid <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
+  </li>
   <% end %>
-  <!-- Transactions for this expense -->
-  <% unless @transactions[@expense.id] == nil %>
-    <% @transactions[@expense.id].each do |transaction| %>
-      <li>
-        <%= transaction.payer.name %> owes <%= transaction.payee.name %> <%= transaction.amount %> for <%= @expense.description %>
-      </li>
-    <% end %>
+  <% end %>
+  <!-- Settle transactions -->
+  <% @transactions_hash.each do |payee, amount| %>
+  <% if amount == 0 %>
+  <li>
+    <%= payee.name %> has settled up with <%= @expense.guest.name %>!
+  </li>
+  <% end %>
   <% end %>
 </ul>
+
 
 <!-- New transaction -->
 <%= link_to "Settle up", new_event_expense_transaction_path(params[:event_id], @expense) %>
 
 <!-- Delete this expense -->
 <%= link_to "Delete this expense", event_expense_path(@event, @expense),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
+method: :delete,
+data: { confirm: "Are you sure?" } %>
