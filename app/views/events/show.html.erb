@@ -4,13 +4,17 @@
   <p>In <%= @event.location %></p>
   <p>From <%= @event.start_time %> to <%= @event.end_time %></p>
   <p><%= @event.description %></p>
-  <p>Your Guests are: <% @event.guests.each do |guest| %>
-    <ul>
-      <li><%= guest.name %></li><li><%= link_to "Delete Guest", event_guest_path(@event, guest), method: :delete, data: {confirm: "Are you sure?"} %></li>
+  <p>Your Guests are:
+    <ul><li><%= current_user.name %></li>
+      <% @event.guests.each do |guest| %>
+
+      <% if guest.name != current_user.name %>
+      <li><%= link_to guest.name, event_guest_path(@event, guest) %></li><li><%= link_to "Delete Guest", event_guest_path(@event, guest), method: :delete, data: {confirm: "Are you sure?"} %></li>
+      <% end %>
     </ul>
     <% end %>
   </p>
-  <%= link_to "Guest List", event_guests_path(@event, @guest) %>
+  <%= link_to "Add Guests", new_event_guest_path(@event) %>
   <%= link_to "Edit Event", edit_event_path(@event)%>
   <%= link_to "Delete Event", event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %>
   <%= link_to "Apple Calendar", @link_apple %>

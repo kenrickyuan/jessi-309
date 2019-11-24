@@ -1,2 +1,12 @@
-<h1>Guests#show</h1>
-<p>Find me in app/views/guests/show.html.erb</p>
+<%= render 'shared/navbar-expanded-overview' %>
+<div style="margin-top: 120px">
+  <h1><%= @guest.name %></h1>
+  <% if @guest.description.nil? %>
+  <%= link_to "Add Description", edit_event_guest_path(@event, @guest) %>
+  <% else %>
+  <p><%= @guest.description %></p>
+  <% end %>
+
+  <%= link_to "Edit Guest", edit_event_guest_path(@event, @guest)%>
+  <%= link_to "Delete Event", event_guest_path(@event, @guest), method: :delete, data: {confirm: "Are you sure?"} %>
+</div>

@@ -8,6 +8,7 @@
 User.destroy_all
 Event.destroy_all
 User.create!(
+  name: "mark",
   email: 'mark_ruffalo@icloud.com',
   password: 'testing123'
   )
