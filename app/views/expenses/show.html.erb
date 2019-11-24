@@ -6,25 +6,33 @@
     <%= @expense.guest.name %> paid <%= @expense.amount %> for <%= @expense.description %>
   </li>
   <!-- Each transaction -->
+  <% @transaction_hash = {} %>
+  <!-- Debt transactions -->
   <% @transactions.each do |transaction| %>
-  <li>
     <% if transaction.is_debt == true %>
-    <%= transaction.payer.name %> owes <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
-    <% else %>
-    <%= transaction.payer.name %> paid <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
-  </li>
+      <% @transaction_hash[transaction.payer.name] = transaction.amount %>
+    <li>
+      <%= transaction.payer.name %> owes <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
+    </li>
+    <% end %>
   <% end %>
-  <% end %>
-  <!-- Settle transactions -->
-  <% @transactions_hash.each do |payee, amount| %>
-  <% if amount == 0 %>
-  <li>
-    <%= payee.name %> has settled up with <%= @expense.guest.name %>!
-  </li>
-  <% end %>
+  <!-- Payment transactions -->
+  <% @transactions.each do |transaction| %>
+    <% if transaction.is_debt == false %>
+    <li>
+      <%= transaction.payer.name %> paid <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
+    </li>
+      <% @transaction_hash[transaction.payer.name] -= transaction.amount %>
+    <li>
+      <% if @transaction_hash[transaction.payer.name] == 0 %>
+        <strong><%= transaction.payer.name %> is setted up with <%= transaction.payee.name %> for <%= transaction.expense.description %>!</strong>
+      <% else %>
+        <%= transaction.payer.name %> now owes <%= transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
+      <% end %>
+    </li>
+    <% end %>
   <% end %>
 </ul>
-
 
 <!-- New transaction -->
 <%= link_to "Settle up", new_event_expense_transaction_path(params[:event_id], @expense) %>
