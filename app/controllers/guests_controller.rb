@@ -17,7 +17,6 @@ class GuestsController < ApplicationController
 
     @errors = []
     guests.each do |guest|
-
       @guest = Guest.new(name: guest, event: @event)
         unless @guest.save
           @errors << "Error: #{@guest.errors.full_messages}"
@@ -32,7 +31,6 @@ class GuestsController < ApplicationController
 
   def edit
     @guest.event = @event
-
   end
 
   def update
