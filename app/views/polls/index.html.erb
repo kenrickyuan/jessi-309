@@ -1,5 +1,5 @@
 <%= render 'shared/navbar-expanded-polls' %>
-<div class="px-4" style="margin-top: 200px;">
+<div class="px-4 mt-4">
   <p id="notice"><%= notice %></p>
 
   <% @polls.each do |poll| %>
@@ -9,7 +9,7 @@
       <p align="right" class="mb-2" style="color: #646464;">NUMBER have responded</p>
     </a>
     <div class="d-flex justify-content-between">
-      <%= link_to image_tag('share.png', height: '25', width: '25'), @link_google %>
+      <%= link_to image_tag('share.png', height: '25', width: '25'), poll.link %>
       <a class="text-decoration-none" href="<%= event_poll_path(@event, poll) %>" style="width: 70%;"></a>
       <%= link_to image_tag('delete.png', height: '25', width: '25'), event_poll_path(@event, poll), method: :delete, data: {confirm: "Are you sure you want to delete this poll?"} %>
     </div>
