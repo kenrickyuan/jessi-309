@@ -1,8 +1,10 @@
 
 class PollsController < ApplicationController
+
   before_action :set_poll, only: [:show, :edit, :update, :destroy, :set_poll_responses]
-  before_action :set_event, only: [:show, :destroy, :set_poll_responses]
+  before_action :set_event, only: [:create, :show, :destroy, :set_poll_responses]
   afer_action :set_poll_responses, only: [:show, :index]
+
   # GET /polls
   # GET /polls.json
   def index

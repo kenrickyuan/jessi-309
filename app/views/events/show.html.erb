@@ -1,30 +1,40 @@
 <%= render 'shared/navbar-expanded-overview' %>
 <div class="px-4" style="margin-top: 120px">
-  <div class="card">
+  <div class="card mb-4">
     <div class="pb-4">
       <h5 style="font-weight: bold; font-family: Noto Sans; color: #472B62;"><%= @event.title %></h5>
     </div>
-    <div class="divider mb-4">
+    <div class="divider mb-3">
       <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Time</h5>
-      <p style="font-size: 14px;" class="mb-2"><%= @event.start_time %></p>
-      <p style="font-size: 14px;"><%= @event.end_time %></p>
+      <p class="mb-2"><%= @event.start_time %></p>
+      <p><%= @event.end_time %></p>
     </div>
 
-    <div class="divider mb-4">
+    <div class="divider mb-3">
       <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Location</h5>
-      <p style="font-size: 14px;"><%= @event.location %></p>
+      <p><%= @event.location %></p>
     </div>
 
     <div>
-      <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Description</h5>
-      <p style="font-size: 14px;"><%= @event.description %></p>
+      <h5 class="mb-2" style="font-family: Noto Sans; color: #472B62;">Description</h5>
+      <p><%= simple_format(@event.description) %></p>
     </div>
 
+    <div class="d-flex justify-content-between">
+      <%= link_to image_tag('share.png', height: '25', width: '25'), @link_google %>
+      <%= link_to image_tag('edit.png', height: '25', width: '25'), edit_event_path(@event) %>
+      <%= link_to image_tag('delete.png', height: '25', width: '25'), event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
   </div>
-    <h1><%= @event.title %></h1>
+
+  <a href="<%= event_guests_path(@event) %>" class="card text-decoration-none">
+    <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Guests</h5>
+    <p class="mb-2" style="color: #646464;"><%= @event.guests.count %> going</p>
+  </a>
+
     <p>In <%= @event.location %></p>
     <p>From <%= @event.start_time %> to <%= @event.end_time %></p>
-    <p><%= @event.description %></p>
+    <p><%= simple_format(@event.description) %></p>
     <p>Your Guests are:
       <ul><li><%= current_user.name %></li>
         <% @event.guests.each do |guest| %>
