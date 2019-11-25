@@ -4,7 +4,6 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :form_title %>
     <%= f.input :question %>
     <div id="choices">
       <label for="1">Option 1</label>

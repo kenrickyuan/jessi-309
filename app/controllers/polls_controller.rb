@@ -1,7 +1,8 @@
 
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy]
-  before_action :set_event, only: [:show, :destroy]
+  before_action :set_poll, only: [:show, :edit, :update, :destroy, :set_poll_responses]
+  before_action :set_event, only: [:show, :destroy, :set_poll_responses]
+  afer_action :set_poll_responses, only: [:show, :index]
   # GET /polls
   # GET /polls.json
   def index
@@ -12,29 +13,6 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
-    typeform = @poll.typeform_id
-    typeform_api = Typeform.new
-    response = typeform_api.responses(typeform)
-
-    responses = []
-    show = response.parsed_response["items"]
-    show.each do |elements|
-      elements["answers"].each do |answer|
-        if !answer["choices"]["other"].nil?
-          responses << answer["choices"]["other"]
-        end
-        if !answer["choices"]["labels"].nil?
-          responses << answer["choices"]["labels"]
-        end
-
-      end
-    end
-    @count = Hash.new(0)
-    responses.flatten.each do |label|
-      @count[label] += 1
-    end
-    @count
-    @length = show.length
   end
 
   # GET /polls/new
@@ -128,5 +106,33 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
       params.require(:poll).permit(:typeform_id, :event_id, :link, :form_title, :question)
+    end
+
+    def set_poll_responses
+    typeform = @poll.typeform_id
+    typeform_api = Typeform.new
+    response = typeform_api.responses(typeform)
+
+    responses = []
+    show = response.parsed_response["items"]
+    show.each do |elements|
+      elements["answers"].each do |answer|
+        if !answer["choices"]["other"].nil?
+          responses << answer["choices"]["other"]
+        end
+        if !answer["choices"]["labels"].nil?
+          responses << answer["choices"]["labels"]
+        end
+
+      end
+    end
+    @count = Hash.new(0)
+    responses.flatten.each do |label|
+      @count[label] += 1
+    end
+    @count
+    @length = show.length
+    @poll.responses = @count
+    @poll.response_number = @length
     end
   end

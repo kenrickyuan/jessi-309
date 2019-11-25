@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th>Formtitle</th>
+        <th>Responses</th>
         <th>Link to Copy</th>
         <th colspan="3"></th>
       </tr>
@@ -16,7 +17,8 @@
     <tbody>
       <% @polls.each do |poll| %>
       <tr>
-        <td><%= link_to poll.form_title, event_poll_path(@event, poll) %></td>
+        <td><%= link_to poll.question, event_poll_path(@event, poll) %></td>
+        <td> <%=  poll.response_number %></td>
         <td><%= poll.link %></td>
         <td><%= link_to "Preview Form", poll.link, target: :_blank %></td>
         <td><%= link_to "Delete Poll", event_poll_path(@event, poll), method: :delete, data: {confirm: "Are you sure?"} %></td>
