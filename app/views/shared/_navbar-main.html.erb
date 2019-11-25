@@ -3,17 +3,16 @@
     <%= link_to image_tag('burger-menu.png', height: '20', width: '22'), class: "openbtn" %>
   </div>
   <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" id="closebtn">&times;</a>
-    <h3>Your Events</h3>
+    <h2>Your Events</h2>
     <% if !(@current.empty?) %>
-    <h2>Today</h2>
+    <h3 class ="header-sidebar">Today</h3>
     <% @current.each do |current_event| %>
     <div class="event"><h2><%= link_to current_event.title, event_path(current_event) %></h2>
       <% end %>
     </div>
     <% end %>
     <% if !(@pending.empty?) %>
-    <h2>Upcomming</h2>
+    <h3 class ="header-sidebar">Upcomming</h3>
     <div class="event">
       <% @pending.each do |pending_event| %>
       <h2><%= link_to pending_event.title, event_path(pending_event) %></h2>
@@ -21,16 +20,13 @@
     </div>
     <% end %>
     <% if !(@past.empty?) %>
-    <h2>Past</h2>
+    <h3 class ="header-sidebar">Past</h3>
     <div class="event">
       <% @past.each do |past_event| %>
       <h2><%= link_to past_event.title, event_path(past_event) %></h2>
       <% end %>
     </div>
     <% end %>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
   </div>
   <button class="openbtn">&#9776;</button>
 
