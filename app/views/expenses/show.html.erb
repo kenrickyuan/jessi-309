@@ -1,37 +1,31 @@
 <%= @expense[:description] %>
 
-<!-- The expense -->
 <ul>
+  <!-- Payment transactions -->
+  <% @payment_transactions.reverse.each do |transaction| %>
+  <li>
+    <% if transaction[:debt] == 0 %>
+    <strong><%= transaction[:payer].name %> has setted up with <%= transaction[:payee].name %>!</strong>
+    <% else %>
+    <%= transaction[:payer].name %> now owes <%= humanized_money_with_symbol transaction[:debt] %> to <%= transaction[:payee].name %>
+    <% end %>
+  </li>
+  <li>
+    <%= transaction[:payer].name %> paid <%= humanized_money_with_symbol transaction[:amount] %> to <%= transaction[:payee].name %>
+  </li>
+  <% end %>
+  <!-- Debt transactions -->
+  <% @transactions.each do |transaction| %>
+  <% if transaction.is_debt == true %>
+  <li>
+    <%= transaction.payer.name %> owes <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %>
+  </li>
+  <% end %>
+  <% end %>
+  <!-- The expense -->
   <li>
     <%= @expense.guest.name %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %>
   </li>
-  <!-- Each transaction -->
-  <% @transaction_hash = {} %>
-  <!-- Debt transactions -->
-  <% @transactions.each do |transaction| %>
-    <% if transaction.is_debt == true %>
-      <% @transaction_hash[transaction.payer.name] = transaction.amount %>
-    <li>
-      <%= transaction.payer.name %> owes <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
-    </li>
-    <% end %>
-  <% end %>
-  <!-- Payment transactions -->
-  <% @transactions.each do |transaction| %>
-    <% if transaction.is_debt == false %>
-    <li>
-      <%= transaction.payer.name %> paid <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
-    </li>
-      <% @transaction_hash[transaction.payer.name] -= transaction.amount %>
-    <li>
-      <% if @transaction_hash[transaction.payer.name] == 0 %>
-        <strong><%= transaction.payer.name %> has setted up with <%= transaction.payee.name %> for <%= transaction.expense.description %>!</strong>
-      <% else %>
-        <%= transaction.payer.name %> now owes <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
-      <% end %>
-    </li>
-    <% end %>
-  <% end %>
 </ul>
 
 <!-- New transaction -->
