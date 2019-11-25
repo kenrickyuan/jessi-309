@@ -8,15 +8,20 @@
 }
 
 #title {
-  font-size: 4em;
+  font-size: 3rem;
+  font-weight: bold;
   color: #472B62;
   text-transform: initial;
-  border-bottom: solid;
   line-height: inherit;
-
 }
 
 #typewriter {
+  font-size: 2em;
+  color: #472B62;
+  text-transform: initial;
+}
+
+#typewriter1 {
   font-size: 2em;
   color: #472B62;
   text-transform: initial;
@@ -43,8 +48,9 @@ span {
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
-  font-family: noto sans;
+  font-family: Noto Sans;
   line-height: 27px;
+  width: 38%;
 }
 
 .btn-landing:hover {
@@ -55,13 +61,13 @@ span {
 .box-color-white {
   background-color: white;
   height: 100%;
-  text-align: center;
+  // text-align: center;
 }
 .card-product {
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
 }
@@ -90,5 +96,6 @@ span {
 .card-product .card-product-infos {
   padding: 16px;
   color: #472B62;
+  width: -webkit-fill-available;
 }
 
