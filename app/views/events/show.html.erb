@@ -31,9 +31,7 @@
       <%= link_to image_tag('delete.png', height: '25', width: '25'), event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %>
     </div>
   </div>
-<div id="main">
-  <button type ="button" id="openbtn">&#9776; Open Sidebar</button>
-</div>
+>
   <a href="<%= event_guests_path(@event) %>" class="card text-decoration-none">
     <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Guests</h5>
     <p class="mb-2" style="color: #646464;"><%= @event.guests.count %> going</p>

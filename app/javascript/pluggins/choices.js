@@ -17,5 +17,5 @@ const initMultipleChoices = () => {
   addChoiceBtn.addEventListener('click', addNewButton);
 };
 
-export default initMultipleChoices;
+// export default initMultipleChoices;
 
