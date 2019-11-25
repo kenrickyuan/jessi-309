@@ -3,7 +3,7 @@ Who paid for what?
 
 <%= simple_form_for [@event, @expense] do |f| %>
   <%= f.association :guest, collection: @event.guests %>
-  <%= f.input :amount %>
+  <%= f.input :amount, input_html: { value: "" } %>
   <%= f.input :description %>
   <%= f.submit "Add expense" %>
 <% end %>

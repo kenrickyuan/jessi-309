@@ -3,6 +3,6 @@ Who paid <%= @expense.guest.name %> for <%= @expense[:description] %> and how mu
 
 <%= simple_form_for [@event, @expense, @transaction] do |f| %>
   <%= f.association :payer, collection: @guests %>
-  <%= f.input :amount %>
+  <%= f.input :amount, input_html: { value: "" } %>
   <%= f.submit "Add transaction" %>
 <% end %>
