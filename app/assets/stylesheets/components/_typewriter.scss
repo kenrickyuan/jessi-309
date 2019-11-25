@@ -1,0 +1,11 @@
+#typewriter {
+  font-size: 5em;
+  color: white;
+  text-transform: uppercase;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
