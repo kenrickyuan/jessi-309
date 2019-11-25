@@ -22,10 +22,6 @@
   text-transform: initial;
 }
 
-span {
-  border-right: .02em solid;
-  animation: caret 1s steps(1) infinite;
-}
 
 @keyframes caret {
   50% {
@@ -43,7 +39,6 @@ span {
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
-  font-family: noto sans;
   line-height: 27px;
 }
 
@@ -91,4 +86,3 @@ span {
   padding: 16px;
   color: #472B62;
 }
-
