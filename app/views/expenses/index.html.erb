@@ -9,7 +9,7 @@
   <%= f.submit "Filter expenses" %>
   <% end %>
 
-  Expenses
+  <!-- Each expense -->
   <ul>
     <% @expenses.each do |expense| %>
     <li>
@@ -19,5 +19,6 @@
     <% end %>
   </ul>
 
+  <!-- New expense -->
   <%= link_to "New expense", new_event_expense_path %>
 </div>
