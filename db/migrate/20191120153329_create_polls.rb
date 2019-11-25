@@ -10,6 +10,8 @@ class CreatePolls < ActiveRecord::Migration[5.2]
       t.string :question
       #label:
       t.string :option
+      t.integer :response_number
+      t.string :responses
       t.references :event, foreign_key: true
 
       t.timestamps

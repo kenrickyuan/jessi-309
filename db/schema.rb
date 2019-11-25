@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2019_11_21_182519) do
     t.string "form_title"
     t.string "question"
     t.string "option"
+    t.integer "response_number"
+    t.string "responses"
     t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
