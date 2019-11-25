@@ -34,7 +34,6 @@ class ExpensesController < ApplicationController
     @expenses = @event.expenses
     filter_by_description if params[:search] && params[:search][:description].present?
     filter_by_guest if params[:search] && params[:search][:guest].present?
-    @expenses
   end
 
   def show
