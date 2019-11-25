@@ -27,7 +27,7 @@
       <% if @transaction_hash[transaction.payer.name] == 0 %>
         <strong><%= transaction.payer.name %> has setted up with <%= transaction.payee.name %> for <%= transaction.expense.description %>!</strong>
       <% else %>
-        <%= transaction.payer.name %> now owes <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
+        <%= transaction.payer.name %> now owes <%= humanized_money_with_symbol @transaction_hash[transaction.payer.name] %> to <%= transaction.payee.name %> for <%= transaction.expense.description %>
       <% end %>
     </li>
     <% end %>
