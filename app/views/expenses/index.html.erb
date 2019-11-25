@@ -4,8 +4,8 @@
 
   <!-- Form to filter the expenses by description and/or guest -->
   <%= simple_form_for :search, url: event_expenses_path, method: "GET" do |f| %>
-  <%= f.input :description, collection: @expenses, label_method: :description %>
-  <%= f.input :guest, collection: Guest.all %>
+  <%= f.input :description, collection: @expenses, label_method: :description, value_method: :description %>
+  <%= f.input :guest, collection: @event.guests %>
   <%= f.submit "Filter expenses" %>
   <% end %>
 
