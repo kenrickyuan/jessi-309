@@ -1,2 +1,35 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="box-color-pink" style="background: #FE8180;">
+  <h1 id="title" style="font-family: noto sans">Jessi!</h1>
+  <h2 id="typewriter" style="font-family: noto sans">typewriter</h1>
+  <br>
+  <%= image_tag("iphone.png", :alt => "rss feed") %>
+  <br>
+  <div style="padding: 20px;">
+    <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-landing"%>
+    <%= link_to 'Sign in', new_user_session_path, class: "btn btn-landing"%>
+<div style="padding: 20px;">
+</div>
+<div class="box-color-white">
+  <div class="card-product">
+    <%= image_tag("analysis.png", :alt => "rss feed") %>
+    <div class="card-product-infos" style="font-family: noto sans">
+      <h2>Plan</h2>
+      <p>Jessi will create <strong>polls</strong> to engage your friends in planning the perfect event.</p>
+    </div>
+  </div>
+  <div class="card-product">
+    <%= image_tag("tracking.png", :alt => "rss feed") %>
+    <div class="card-product-infos" style="font-family: noto sans">
+      <h2>Track</h2>
+      <p>Jessi will set reminders for you and you friends in your personal calendar.</p>
+    </div>
+  </div>
+  <div class="card-product">
+    <%= image_tag("home.png", :alt => "rss feed") %>
+    <div class="card-product-infos" style="font-family: noto sans">
+      <h2>Organise</h2>
+      <p>All of your events are easily accessible in your own dashboard.</p>
+    </div>
+  </div>
+</div>
+
