@@ -13,7 +13,7 @@
   <ul>
     <% @expenses.each do |expense| %>
     <li>
-      <%= expense.guest.name %> paid <%= expense.amount %> for <%= expense.description %>
+      <%= expense.guest.name %> paid <%= humanized_money_with_symbol expense.amount %> for <%= expense.description %>
       <%= link_to "Show", event_expense_path(@event, expense) %>
     </li>
     <% end %>
