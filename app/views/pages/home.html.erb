@@ -1,38 +1,53 @@
-<!-- <canvas id='canvas'></canvas>
- --><div class="box-color-pink" style="background: #FE8180;">
-  <h1 id="title" style="font-family: noto sans">jessi.io</h1>
-  <h2 id="typewriter" style="font-family: noto sans">typewriter</h2>
-  <h2 id="typewriter1" style="font-family: noto sans">in one visual space.</h2>
-  <br>
-  <%= image_tag("iphone.png", :alt => "rss feed") %>
-  <br>
-  <div style="padding: 20px;">
-    <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-landing"%>
-    <%= link_to 'Sign in', new_user_session_path, class: "btn btn-landing"%>
-<div style="padding: 20px;">
-</div>
-<div class="box-color-white">
-  <div class="card-product">
-    <%= image_tag("analysis.png", :alt => "rss feed") %>
-    <div class="card-product-infos" style="font-family: noto sans">
-      <h2>Plan</h2>
-      <p>Jessi will create <strong>polls</strong> to engage your friends in planning the perfect event.</p>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<div class="box-color-pink" style="background: #FE8180;">
+  <div class="position-top" style="height: 100vh;">
+    <h1 id="title" style="font-family: noto sans">jessi.io</h1>
+    <h2 id="typewriter" style="font-family: noto sans">typewriter</h2>
+    <h2 id="typewriter1" style="font-family: noto sans">in one visual space.</h2>
+    <br>
+    <%= image_tag("iphone.png", :alt => "rss feed") %>
+    <br>
+    <div style="padding: 20px; margin-top: 10px;">
+      <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-landing"%>
+      <%= link_to 'Sign in', new_user_session_path, class: "btn btn-landing"%>
+      <div style="padding: 20px;">
+      </div>
+      <a href="#box-color-white" class="fas fa-angle-down" id="test" style="color: #472B62;"></a>
     </div>
   </div>
+</div>
+<div class="container flex-grow">
+  <div id="box-color-white">
   <div class="card-product">
-    <%= image_tag("tracking.png", :alt => "rss feed") %>
+    <lottie-player
+    src="https://assets3.lottiefiles.com/packages/lf20_8JndGA.json"  background="transparent"  speed="0.9"  style="width: 180px; height: 210px;"  loop  autoplay >
+  </lottie-player>
     <div class="card-product-infos" style="font-family: noto sans">
       <h2>Track</h2>
-      <p>Jessi will set reminders for you and you friends in your personal calendar.</p>
+      <p>Jessi will set reminders for you and you friends in your Google & Apple calendars.</p>
     </div>
-  </div>
-  <div class="card-product">
-    <%= image_tag("home.png", :alt => "rss feed") %>
+</div>
+    <div class="card-product">
     <div class="card-product-infos" style="font-family: noto sans">
-      <h2>Organise</h2>
-      <p>Your events are easily accessible in your custom dashboard where you can share the event with either Apple or Google calendar.</p>
+      <h2>Plan</h2>
+      <p>Jessi will create polls to engage your friends in planning the perfect event.</p>
     </div>
+      <lottie-player
+      src="https://assets2.lottiefiles.com/datafiles/6WfDdm3ooQTEs1L/data.json"  background="#FE8180"  speed="0.8"  style="width: 180px; height: 210px;"  loop  autoplay >
+    </lottie-player>
   </div>
+<div class="card-product">
+  <lottie-player
+  src="https://assets8.lottiefiles.com/packages/lf20_4ejZJA.json"  background="transparent"  speed="0.8"  style="width: 180px; height: 210px;"  loop autoplay >
+</lottie-player>
+<div class="card-product-infos" style="font-family: noto sans">
+  <h2>Organise</h2>
+  <p>Your events are easily accessible in your custom dashboard.</p>
+</div>
+</div>
+</div>
 </div>
 
-</div>
+
