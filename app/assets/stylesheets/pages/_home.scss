@@ -8,12 +8,11 @@
 }
 
 #title {
-  font-size: 4em;
+  font-size: 3rem;
+  font-weight: bold;
   color: #472B62;
   text-transform: initial;
-  border-bottom: solid;
   line-height: inherit;
-
 }
 
 #typewriter {
@@ -22,6 +21,16 @@
   text-transform: initial;
 }
 
+#typewriter1 {
+  font-size: 2em;
+  color: #472B62;
+  text-transform: initial;
+}
+
+span {
+  border-right: .02em solid;
+  animation: caret 1s steps(1) infinite;
+}
 
 @keyframes caret {
   50% {
@@ -39,7 +48,9 @@
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
+  font-family: Noto Sans;
   line-height: 27px;
+  width: 38%;
 }
 
 .btn-landing:hover {
@@ -50,13 +61,13 @@
 .box-color-white {
   background-color: white;
   height: 100%;
-  text-align: center;
+  // text-align: center;
 }
 .card-product {
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
 }
@@ -85,4 +96,5 @@
 .card-product .card-product-infos {
   padding: 16px;
   color: #472B62;
+  width: -webkit-fill-available;
 }
