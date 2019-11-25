@@ -8,10 +8,15 @@
   <%= simple_form_for @event do |f| %>
 
   <%= f.input :title %>
+  <hr style="border-width: 4px;" class="m-0">
   <%= f.input :location %>
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
+  <hr style="border-width: 4px;" class="m-0">
+  <%= f.input :start_time, as: 'string', input_html: {class: 'picker'} %>
+  <hr style="border-width: 4px;" class="m-0">
+  <%= f.input :end_time, as: 'string', input_html: {class: 'picker'} %>
+  <hr style="border-width: 4px;" class="m-0">
   <%= f.input :description %>
+  <hr style="border-width: 4px;" class="m-0">
 </div>
 
 <div class="bottom-btn">
