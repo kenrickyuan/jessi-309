@@ -1,5 +1,5 @@
 <%= render 'shared/navbar-expanded-overview' %>
-<div class="px-4" style="margin-top: 120px">
+<div class="px-4">
   <div class="card mb-4">
     <div class="pb-4">
       <h5 style="font-weight: bold; font-family: Noto Sans; color: #472B62;"><%= @event.title %></h5>
@@ -27,24 +27,29 @@
     </div>
   </div>
 
-  <a href="<%= event_guests_path(@event) %>" class="card text-decoration-none">
+
+  <!-- same as <a href="<%= event_guests_path(@event) %>" class="card text-decoration-none"></a> -->
+  <%= link_to event_guests_path(@event), class: "card text-decoration-none" do  %>
     <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Guests</h5>
-    <p class="mb-2" style="color: #646464;"><%= @event.guests.count %> going</p>
-  </a>
+    <p class="mb-0" style="color: #646464;"><%= @event.guests.count %> going</p>
+    <span class="d-flex justify-content-end">
+      <%= image_tag('forward-arrow.png', height: '25', width: '22') %>
+    </span>
+  <% end %>
 
-    <p>In <%= @event.location %></p>
-    <p>From <%= @event.start_time %> to <%= @event.end_time %></p>
-    <p><%= simple_format(@event.description) %></p>
-    <p>Your Guests are:
-      <ul><li><%= current_user.name %></li>
-        <% @event.guests.each do |guest| %>
+  <p>In <%= @event.location %></p>
+  <p>From <%= @event.start_time %> to <%= @event.end_time %></p>
+  <p><%= simple_format(@event.description) %></p>
+  <p>Your Guests are:
+    <ul><li><%= current_user.name %></li>
+      <% @event.guests.each do |guest| %>
 
-        <% if guest.name != current_user.name %>
-        <li><%= link_to guest.name, event_guest_path(@event, guest) %></li><li><%= link_to "Delete Guest", event_guest_path(@event, guest), method: :delete, data: {confirm: "Are you sure?"} %></li>
-        <% end %>
-      </ul>
+      <% if guest.name != current_user.name %>
+      <li><%= link_to guest.name, event_guest_path(@event, guest) %></li><li><%= link_to "Delete Guest", event_guest_path(@event, guest), method: :delete, data: {confirm: "Are you sure?"} %></li>
       <% end %>
-    </p>
+    </ul>
+    <% end %>
+  </p>
 
   <%= link_to "Add Guests", new_event_guest_path(@event) %>
   <%= link_to "Edit Event", edit_event_path(@event)%>
