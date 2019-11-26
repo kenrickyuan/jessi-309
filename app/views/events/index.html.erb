@@ -7,7 +7,7 @@
 </div>
 <% end %>
 <% if !(@pending.empty?) %>
-<h2>Upcomming</h2>
+<h2>Upcoming</h2>
 <div class="event">
   <% @pending.each do |pending_event| %>
   <h2><%= link_to pending_event.title, event_path(pending_event) %></h2>
