@@ -1,3 +1,34 @@
 .event-form .simple_form .form-group label {
-  color: red;
+  color: $purple;
+}
+
+.event-form .form-group {
+  padding: 1rem;
+  margin-bottom: 0;
+}
+
+#choices .form-group {
+  padding: 1rem;
+  margin-bottom: 0;
+}
+
+.form-inputs .form-group {
+  padding: 1rem;
+  margin-bottom: 0;
+}
+
+.form-control {
+  border-color: $light-grey;
+  background-image: none;
+  padding-right: 1rem;
+}
+
+.form-control.is-valid {
+  border-color: $light-grey;
+  background-image: none;
+  padding-right: 1rem;
+}
+
+.textarea.form-control.is-valid {
+  padding-right: 1rem;
 }

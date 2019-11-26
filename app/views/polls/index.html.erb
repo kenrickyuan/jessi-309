@@ -6,7 +6,7 @@
   <div class="card">
     <a class="text-decoration-none" href="<%= event_poll_path(@event, poll) %>">
       <h5 class="mb-3" style="color: #472B62;"><%= poll.question %></h5>
-      <p align="right" class="mb-2" style="color: #646464;">NUMBER have responded</p>
+      <p align="right" class="mb-2" style="color: #646464;"><%= poll.response_number %> have responded</p>
     </a>
     <div class="d-flex justify-content-between">
       <%= link_to image_tag('share.png', height: '25', width: '25'), poll.link %>
@@ -15,4 +15,7 @@
     </div>
   </div>
   <% end %>
+</div>
+<div class="bottom-btn">
+  <%= link_to "New poll", new_event_poll_path(@event), class: "submit-btn" %>
 </div>
