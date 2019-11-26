@@ -64,7 +64,7 @@ class ExpensesController < ApplicationController
 
   def set_transactions
     @transactions = []
-    Transaction.where(expense_id: @expense.id).each do |transaction|
+    Transaction.where(expense_id: @expense.id).order(:created_at).each do |transaction|
       @transactions << transaction
     end
     @transactions
@@ -72,26 +72,20 @@ class ExpensesController < ApplicationController
 
   def settle_transactions
     @transactions_hash = {}
+    @payment_transactions = []
     @transactions.each do |transaction|
-      if transaction.is_debt == false
-        if (@transactions_hash.key?(transaction.payer))
-          @transactions_hash[transaction.payer] += transaction.amount
-        else
-          @transactions_hash[transaction.payer] = 0
-          @transactions_hash[transaction.payer] += transaction.amount
-        end
-      end
+      @transactions_hash[transaction.payer] = transaction.amount if transaction.is_debt == true
     end
     @transactions.each do |transaction|
-      if transaction.is_debt == true
-        if (@transactions_hash.key?(transaction.payer))
-          @transactions_hash[transaction.payer] -= transaction.amount
-        else
-          @transactions_hash[transaction.payer] = 0
-          @transactions_hash[transaction.payer] -= transaction.amount
-        end
-      end
-      @transactions_hash
+      next if transaction.is_debt == true
+
+      @transactions_hash[transaction.payer] -= transaction.amount
+      payment_transaction_details = {}
+      payment_transaction_details[:payer] = transaction.payer
+      payment_transaction_details[:payee] = transaction.payee
+      payment_transaction_details[:amount] = transaction.amount
+      payment_transaction_details[:debt] = @transactions_hash[transaction.payer]
+      @payment_transactions << payment_transaction_details
     end
   end
 

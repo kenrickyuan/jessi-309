@@ -2,7 +2,7 @@ class GuestsController < ApplicationController
   before_action :set_guest, only: [:show, :edit, :update, :destroy]
   before_action :set_event, only: [:index, :show, :new, :create, :edit, :update]
   def index
-    @guests = Guest.all
+    @guests = @event.guests
   end
 
   def show
@@ -23,7 +23,7 @@ class GuestsController < ApplicationController
         end
     end
     if @errors.empty?
-      redirect_to event_path(@event, @guest)
+      redirect_to event_guests_path(@event)
     else
       render :new
     end
@@ -35,13 +35,13 @@ class GuestsController < ApplicationController
 
   def update
     @guest.update(guest_params)
-    redirect_to event_path(@event)
+    redirect_to event_guests_path(@event, @guest)
   end
 
   def destroy
     @guest.destroy
     @event = Event.find(params[:event_id])
-    redirect_to event_path(@event)
+    redirect_to event_guests_path(@event)
   end
 
   private

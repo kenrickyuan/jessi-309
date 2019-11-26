@@ -7,13 +7,13 @@ class PollsController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @polls = @event.polls
-    set_poll_responses if @poll.present?
+    @polls.each { |poll| set_poll_responses(poll) if poll.present? }
   end
 
   # GET /polls/1
   # GET /polls/1.json
   def show
-    set_poll_responses if @poll.present?
+    set_poll_responses(@poll) if @poll.present?
   end
 
   # GET /polls/new
@@ -109,8 +109,8 @@ end
       params.require(:poll).permit(:typeform_id, :event_id, :link, :form_title, :question)
     end
 
-    def set_poll_responses
-    typeform = @poll.typeform_id
+    def set_poll_responses(poll)
+    typeform = poll.typeform_id
     typeform_api = Typeform.new
     response = typeform_api.responses(typeform)
 
@@ -133,7 +133,7 @@ end
     end
     @count
     @length = show.length
-    @poll.responses = @count
-    @poll.response_number = @length
+    poll.responses = @count
+    poll.response_number = @length
     end
   end
