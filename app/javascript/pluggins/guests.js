@@ -1,9 +1,12 @@
 let g = 2
 
 const addaNewButton = () => {
-  console.log(g)
-  const guest = `<label for='guest${g}'>Guest ${g}</label>` +
-    `<input name="guests[]" type="text" id="guest${g}"/>`;
+  const guest = `<div class="form-group">` +
+    `<label for='${g}'>Guest</label>` +
+    `<input name="guests[]" type="text" id="${g}" class="form-control form-group" />` +
+    `</div>` +
+    `<hr style="border-width: 4px;" class="m-0">`;
+
   g += 1
   const guestForm = document.getElementById("guests");
 

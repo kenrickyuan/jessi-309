@@ -1,14 +1,18 @@
-
-<h1 class="form-h1">Edit Guest</h1>
-
-<%= simple_form_for [@event, @guest], html: { multipart: true } do |f| %>
-<div class="form-inputs">
-  <%= f.input :name %>
-  <%= f.input :description %>
+<div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
+  <%= link_to image_tag('back-arrow.png', height: '22', width: '20'),  event_guests_path(@event, @guest) %>
+  <h4 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62"><%= @guest.name %></h4>
+  <div style="width: 22px"></div>
 </div>
 
-<div class="form-submit-btn d-flex justify-content-between">
+<div class="event-form">
+  <%= simple_form_for [@event, @guest] do |f| %>
 
-  <%= f.button :submit, "Edit", { class: 'login-btn' , id: 'new-event-btn'}  %>
+  <%= f.input :name %>
+  <hr style="border-width: 4px;" class="m-0">
+  <%= f.input :description, as: :text, input_html: {:style => 'height: calc(100vh - 325px); padding-right: 1rem;'} %>
+</div>
+
+<div class="bottom-btn">
+  <%= f.button :submit, "Save", class: "submit-btn" %>
 </div>
 <% end %>

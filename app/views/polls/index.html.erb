@@ -16,6 +16,10 @@
   </div>
   <% end %>
 </div>
+
+<!-- makes sure the last card isn't covered by the bottom btn -->
+<div style="height: 115px;"></div>
+
 <div class="bottom-btn">
   <%= link_to "New poll", new_event_poll_path(@event), class: "submit-btn" %>
 </div>
