@@ -1,6 +1,7 @@
 <%= render 'shared/navbar-expanded-overview' %>
-<div class="px-4" style="margin-top: 120px">
-  <div class="card mb-4">
+<!-- <div style="background-color: #FE8180; width: 100%; height: 100px; margin-bottom: -100px;"></div> -->
+<div class="px-4">
+  <div class="card my-4">
     <div class="pb-4">
       <h5 style="font-weight: bold; font-family: Noto Sans; color: #472B62;"><%= @event.title %></h5>
     </div>
@@ -15,7 +16,7 @@
       <p><%= @event.location %></p>
     </div>
 
-    <div>
+    <div class="mb-3">
       <h5 class="mb-2" style="font-family: Noto Sans; color: #472B62;">Description</h5>
       <p><%= simple_format(@event.description) %></p>
     </div>
@@ -26,29 +27,13 @@
       <%= link_to image_tag('delete.png', height: '25', width: '25'), event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %>
     </div>
   </div>
->
-  <a href="<%= event_guests_path(@event) %>" class="card text-decoration-none">
+
+  <!-- same as <a href="<%= event_guests_path(@event) %>" class="card text-decoration-none"></a> -->
+  <%= link_to event_guests_path(@event), class: "card text-decoration-none mb-4" do  %>
     <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Guests</h5>
-    <p class="mb-2" style="color: #646464;"><%= @event.guests.count %> going</p>
-  </a>
-
-    <p>In <%= @event.location %></p>
-    <p>From <%= @event.start_time %> to <%= @event.end_time %></p>
-    <p><%= simple_format(@event.description) %></p>
-    <p>Your Guests are:
-      <ul><li><%= current_user.name %></li>
-        <% @event.guests.each do |guest| %>
-
-        <% if guest.name != current_user.name %>
-        <li><%= link_to guest.name, event_guest_path(@event, guest) %></li><li><%= link_to "Delete Guest", event_guest_path(@event, guest), method: :delete, data: {confirm: "Are you sure?"} %></li>
-        <% end %>
-      </ul>
-      <% end %>
-    </p>
-
-  <%= link_to "Add Guests", new_event_guest_path(@event) %>
-  <%= link_to "Edit Event", edit_event_path(@event)%>
-  <%= link_to "Delete Event", event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %>
-  <%= link_to "Apple Calendar", @link_apple %>
-  <%= link_to "Google Calendar", @link_google %>
+    <p class="mb-0" style="color: #646464;"><%= @event.guests.count %> going</p>
+    <span class="d-flex justify-content-end">
+      <%= image_tag('forward-arrow.png', height: '25', width: '22') %>
+    </span>
+  <% end %>
 </div>

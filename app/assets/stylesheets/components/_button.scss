@@ -1,0 +1,30 @@
+#new-event-btn {
+  pointer-events: auto;
+}
+
+.bottom-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $purple;
+  color: white;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 19.5px;
+  width: 30%;
+  height: 38px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}

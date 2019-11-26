@@ -1,32 +1,8 @@
 <div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
-  <%= link_to image_tag('back-arrow.png', height: '20', width: '22'),  event_path(@event) %>
+  <%= link_to image_tag('back-arrow.png', height: '22', width: '20'),  event_path(@event) %>
   <h4 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62">Create a poll</h4>
   <div style="width: 22px"></div>
 </div>
 
-<h1>New Poll</h1>
 
-<%= render 'form', poll: @poll %>
-
-<%= link_to 'Back', event_polls_path(@event, @poll) %>
-
-<script>
-  let n = 4
-
-const addNewButton = () => {
-  console.log(n)
-  const question = `<label for='${n}'>Option${n}</label>` +
-    `<input name="choices[]" type="text" id="${n}"/>`;
-  n += 1
-  const formElement = document.getElementById("choices");
-
-  formElement.insertAdjacentHTML('beforeend', question);
-}
-
-const initMultipleChoices = () => {
-
-    const addChoiceBtn = document.querySelector('.add-choice-btn');
-    addChoiceBtn.addEventListener('click', addNewButton);
-}
-
-</script>
+<%= render 'poll-form', poll: @poll %>

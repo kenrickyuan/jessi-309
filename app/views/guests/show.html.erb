@@ -1,5 +1,10 @@
-<%= render 'shared/navbar-expanded-overview' %>
-<div style="margin-top: 120px">
+<div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
+  <%= link_to image_tag('back-arrow.png', height: '22', width: '20'),  event_guests_path(@event, @guest) %>
+  <h4 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62"><%= @guest.name %></h4>
+  <div style="width: 22px"></div>
+</div>
+
+<div>
   <h1><%= @guest.name %></h1>
   <% if @guest.description.nil? %>
   <%= link_to "Add Description", edit_event_guest_path(@event, @guest) %>
@@ -8,5 +13,4 @@
   <% end %>
 
   <%= link_to "Edit Guest", edit_event_guest_path(@event, @guest)%>
-  <%= link_to "Delete Event", event_guest_path(@event, @guest), method: :delete, data: {confirm: "Are you sure?"} %>
 </div>

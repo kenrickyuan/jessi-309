@@ -1,7 +1,42 @@
-<div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
-  <%= link_to image_tag('back-arrow.png', height: '20', width: '22'),  event_path(@event) %>
-  <h4 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62">Guest list</h4>
-  <div style="width: 22px"></div>
+<div class="sticky-top">
+  <div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
+    <%= link_to image_tag('back-arrow.png', height: '22', width: '20'),  event_path(@event) %>
+    <h4 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62">Guest list</h4>
+    <div style="width: 22px"></div>
+  </div>
+  <div class="text-center p-2" style="background-color: #FAFAFA; box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);">
+    <h5 style="font-weight: bold; font-family: Noto Sans; color: #472B62;"><%= @event.title %></h5>
+    <p class="mb-0" style="color: #646464; "><%= @guests.count %> going</p>
+  </div>
 </div>
-<h1>Guests#index</h1>
-<%= link_to "Add Guests", new_event_guest_path(@event) %>
+
+<div class="mx-4">
+  <% user = @guests.first %>
+  <div class="card mt-4">
+    <a class="text-decoration-none" href="<%= edit_event_guest_path(@event, user) %>">
+      <h5 class="mb-3 text-center" style="color: #472B62;"><%= user.name %></h5>
+      <p align="center" class="mb-2" style="color: #646464;">this is you!</p>
+    </a>
+  </div>
+
+  <% @guests.each do |guest| %>
+  <% next if guest == @guests.first %>
+  <div class="card mt-4">
+    <a class="text-decoration-none" href="<%= edit_event_guest_path(@event, guest) %>">
+      <h5 class="mb-3 text-center" style="color: #472B62;"><%= guest.name %></h5>
+    </a>
+    <div class="d-flex justify-content-between">
+      <a class="text-decoration-none" href="<%= edit_event_guest_path(@event, guest) %>" style="width: 70%;"></a>
+      <a class="text-decoration-none" href="<%= edit_event_guest_path(@event, guest) %>" style="width: 70%;"></a>
+      <%= link_to image_tag('delete.png', height: '25', width: '25'), event_guest_path(@event, guest), method: :delete, data: {confirm: "Are you sure you want to delete this guest?"} %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<!-- makes sure the last card isn't covered by the bottom btn -->
+<div style="height: 115px;"></div>
+
+<div class="bottom-btn">
+  <%= link_to "Add Guest", new_event_guest_path(@event), class: "submit-btn" %>
+</div>

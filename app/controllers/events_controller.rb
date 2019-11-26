@@ -1,23 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_dropdown
   def index
     @events = Event.order('start_time')
-    @past = []
-    @pending = []
-    @current = []
-    @events.each do |event|
-      @past << event if event.end_time < Time.now
-      @pending << event if event.start_time > Time.now
-      @current << event if (event.start_time <= Time.now) && (event.end_time >= Time.now)
-    end
-    @past
-    @pending
-    @current
   end
 
   def show
-    set_event_link
+    set_event_link if @event.start_time.present?
   end
 
   def new
@@ -26,14 +14,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    guest1 = Guest.new(name: current_user.name, event: @event)
+    guest1.save!
 
-    if @event.save
-      @guest1 = Guest.new(name: current_user.name, event: @event)
-      @guest1.save
+    if @event.save!
       redirect_to event_path(@event)
     else
       render :new
-      set_event_link
     end
   end
 
@@ -60,25 +47,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def set_dropdown
-  @events = Event.order('start_time')
-    @past = []
-    @pending = []
-    @current = []
-    @events.each do |event|
-      @past << event if event.end_time < Time.now
-      @pending << event if event.start_time > Time.now
-      @current << event if (event.start_time <= Time.now) && (event.end_time >= Time.now)
-    end
-    @past
-    @pending
-    @current
-  end
-
   def set_event_link
     # time is currently in the wrong format but I will change that later
-    start_date = CGI.escape(@event.start_time.strftime("%m/%d/%Y"))
-    end_date = CGI.escape(@event.end_time.strftime("%m/%d/%Y"))
+    start_date = CGI.escape(@event.start_time.strftime("%m/%d/%Y %H:%M")) if @event.start_time.present?
+    end_date = CGI.escape(@event.end_time.strftime("%m/%d/%Y %H:%M")) if @event.end_time.present?
     title = CGI.escape(@event.title)
     description = CGI.escape(@event.description)
     location = CGI.escape(@event.location)

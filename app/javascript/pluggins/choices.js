@@ -2,8 +2,12 @@ let n = 3
 
 const addNewButton = () => {
   console.log(n)
-  const question = `<label for='${n}'>Option${n}</label>` +
-    `<input name="choices[]" type="text" id="${n}"/>`;
+  const question =
+    `<div class="form-group">` +
+    `<label for='${n}'>Option ${n}</label>` +
+    `<input name="choices[]" type="text" id="${n}" class="form-control form-group" />` +
+    `</div>` +
+    `<hr style="border-width: 4px;" class="m-0">`;
   n += 1
   const formElement = document.getElementById("choices");
 
