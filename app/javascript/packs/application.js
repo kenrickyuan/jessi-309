@@ -1,5 +1,6 @@
 import "bootstrap";
 import $ from 'jquery';
+import "../pluggins/easteregg";
 import "../plugins/datepicker"
 import "../pluggins/choices";
 import "../pluggins/guests";
