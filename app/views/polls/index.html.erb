@@ -1,4 +1,5 @@
 <%= render 'shared/navbar-expanded-polls' %>
+<%= render "shared/sidebar" %>
 <div class="px-4 mt-4">
   <p id="notice"><%= notice %></p>
 
@@ -16,6 +17,10 @@
   </div>
   <% end %>
 </div>
+
+<!-- makes sure the last card isn't covered by the bottom btn -->
+<div style="height: 115px;"></div>
+
 <div class="bottom-btn">
   <%= link_to "New poll", new_event_poll_path(@event), class: "submit-btn" %>
 </div>

@@ -1,29 +1,12 @@
-<h1>All your Events</h1>
-<% if !(@current.empty?) %>
-<h2>Today</h2>
-<% @current.each do |current_event| %>
-<div class="event"><h2><%= link_to current_event.title, event_path(current_event) %></h2>
-  <% end %>
+<%= render 'shared/navbar-expanded-overview' %>
+
+
+
+
+<div class="big-add-btn">
+
+  <div style="padding: 20px;">
+    <%= link_to 'Add Event', new_event_path, class: "btn event-btn"%>
+  </div>
+
 </div>
-<% end %>
-<% if !(@pending.empty?) %>
-<h2>Upcomming</h2>
-<div class="event">
-  <% @pending.each do |pending_event| %>
-  <h2><%= link_to pending_event.title, event_path(pending_event) %></h2>
-  <% end %>
-</div>
-<% end %>
-<% if !(@past.empty?) %>
-<h2>Past</h2>
-<div class="event">
-  <% @past.each do |past_event| %>
-  <h2><%= link_to past_event.title, event_path(past_event) %></h2>
-  <% end %>
-</div>
-<% end %>
-<% if @events.empty? %>
-<%= link_to "Create an Event", new_event_path %>
-<% else %>
-<%= link_to "Create another Event", new_event_path %>
-<% end %>

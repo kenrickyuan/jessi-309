@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_dropdown
   def index
     @events = Event.order('start_time')
   end
@@ -15,10 +14,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    guest1 = Guest.new(name: current_user.name, event: @event)
+    guest1.save!
 
-    if @event.save
-      @guest1 = Guest.new(name: current_user.name, event: @event)
-      @guest1.save
+    if @event.save!
       redirect_to event_path(@event)
     else
       render :new
@@ -46,25 +45,6 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
-  end
-
-  def set_dropdown
-  @events = Event.order('start_time')
-    @past = []
-    @pending = []
-    @current = []
-    @events.each do |event|
-      if event.start_time.nil? || event.start_time > Time.now
-        @pending << event
-      elsif event.start_time < Time.now || event.end_time < Time.now
-        @past << event
-      else
-        @current << event
-      end
-    end
-    @past
-    @pending
-    @current
   end
 
   def set_event_link
