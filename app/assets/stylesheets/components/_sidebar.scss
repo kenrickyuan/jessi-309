@@ -18,7 +18,7 @@
   font-size: 25px;
   color: white;
   display: block;
-  transition: 0.3s;
+  transition: 0.6s;
 }
 
  .toggleSidebar {
@@ -27,7 +27,7 @@
 
 .toggleSidebtn {
    left: 250px !important;
-   transition: 0.5s;
+   transition: 0.6s;
 }
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
@@ -73,8 +73,8 @@
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
+// @media screen and (max-height: 450px) {
+//   .sidebar {padding-top: 15px;}
+//   // .sidebar a {font-size: 18px;}
+// }
 
