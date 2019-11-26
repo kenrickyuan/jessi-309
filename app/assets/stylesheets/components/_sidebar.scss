@@ -2,7 +2,7 @@
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 3000; /* Stay on top */
   top: 0;
   left: 0;
   background-color: #472B62; /* Black*/
@@ -21,17 +21,21 @@
   transition: 0.3s;
 }
 
-// .toggleSidebar {
-//   width: 250px;
-// }
+ .toggleSidebar {
+   width: 250px;
+ }
 
+.toggleSidebtn {
+   left: 250px !important;
+   transition: 0.5s;
+}
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
   color: #f1f1f1;
 }
 
 /* Position and style the close button (top right corner) */
-.sidebar .closebtn {
+.sidebar .openbtn {
   position: absolute;
   top: 0;
   right: 25px;
@@ -39,18 +43,27 @@
   margin-left: 50px;
 }
 
+// img.openbtn.toggleSidebtn {
+//   left: 250px;
+// }
+
 /* The button used to open the sidebar */
 .openbtn {
-  font-size: 20px;
+  /* font-size: 20px; */
   cursor: pointer;
-  background-color: #111;
+  /* background-color: #111; */
   color: white;
   padding: 10px 15px;
   border: none;
+  width: 50px;
+  height: 36px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  transition: 0.6s;
 }
 
 .openbtn:hover {
-  background-color: #444;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
