@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_sidebar
+
   protected
 
   def configure_permitted_parameters
@@ -13,11 +14,13 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || events_path
   end
   def set_sidebar
+
   @events = Event.order('start_time')
     @past = []
     @pending = []
     @current = []
     @events.each do |event|
+
       if event.start_time.nil? || event.start_time > Time.now
         @pending << event
       elsif event.start_time < Time.now || event.end_time < Time.now
