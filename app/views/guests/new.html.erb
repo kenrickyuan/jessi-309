@@ -1,37 +1,17 @@
 
 <h1 class="form-h1">Add Guests</h1>
 
-<%= simple_form_for [@event, @guest], html: { multipart: true } do |f| %>
+<%= simple_form_for [@event, @guest] do |f| %>
 <div class="form-inputs">
   <div id="guests">
-  <label for="1">Guest 1</label>
-  <input name="guests[]" type="text" id="guest1"/>
-</div>
+    <label for="1">Guest 1</label>
+    <input name="guests[]" type="text" id="guest1" class="form-group" />
+  </div>
 </div>
 <button type="button" class="btn btn-white add-guest-btn">Add another Guest</button>
 </div>
 
 <div class="form-submit-btn d-flex justify-content-between">
-
   <%= f.button :submit, "Add to Guestlist", { class: 'login-btn' , id: 'new-event-btn'}  %>
 </div>
 <% end %>
-
-
-<script>let g = 4
-
-const addaNewButton = () => {
-  console.log(g)
-  const guest = `<label for='${g}'>Guest ${g}</label>` +
-    `<input name="guests[]" type="text" id="guest${g}"/>`;
-  g += 1
-  const guestForm = document.getElementById("guests");
-
-  guestForm.insertAdjacentHTML('beforeend', guest);
-}
-
-const initMultipleGuests = () => {
-  const addGuestBtn = document.querySelector('.add-guest-btn');
-  addGuestBtn.addEventListener('click', addaNewButton);
-}
-</script>
