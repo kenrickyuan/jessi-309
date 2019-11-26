@@ -1,13 +1,14 @@
 import "bootstrap";
 import $ from 'jquery';
-import "../pluggins/easteregg";
 import "../plugins/datepicker"
 import "../pluggins/choices";
 import "../pluggins/guests";
-import "../pluggins/typewriter";
+import StartTextAnimation from "../pluggins/typewriter";
 import "../pluggins/sidebar";
 import "../pluggins/sidebarclose";
 
+
+StartTextAnimation();
 // iniDatePicker();
 // initMultipleChoices();
 // initMultipleGuests();
@@ -27,6 +28,5 @@ import "../pluggins/sidebarclose";
 // iniDatePicker();
 // initMultipleChoices();
 // initMultipleGuests();
-// StartTextAnimation();
 // openSideBar();
 // closeSideBar();
