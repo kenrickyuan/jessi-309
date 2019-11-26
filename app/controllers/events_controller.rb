@@ -69,8 +69,8 @@ class EventsController < ApplicationController
 
   def set_event_link
     # time is currently in the wrong format but I will change that later
-    start_date = CGI.escape(@event.start_time.strftime("%m/%d/%Y")) if @event.start_time.present?
-    end_date = CGI.escape(@event.end_time.strftime("%m/%d/%Y")) if @event.end_time.present?
+    start_date = CGI.escape(@event.start_time.strftime("%m/%d/%Y %H:%M")) if @event.start_time.present?
+    end_date = CGI.escape(@event.end_time.strftime("%m/%d/%Y %H:%M")) if @event.end_time.present?
     title = CGI.escape(@event.title)
     description = CGI.escape(@event.description)
     location = CGI.escape(@event.location)
