@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || events_path
   end
-  def set_sidebar
 
-  @events = Event.order('start_time')
+  def set_sidebar
+    @events = Event.order('start_time')
     @past = []
     @pending = []
     @current = []
