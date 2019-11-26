@@ -18,9 +18,13 @@ class ApplicationController < ActionController::Base
     @pending = []
     @current = []
     @events.each do |event|
-      @past << event if event.end_time < Time.now
-      @pending << event if event.start_time > Time.now
-      @current << event if (event.start_time <= Time.now) && (event.end_time >= Time.now)
+      if event.start_time.nil? || event.start_time > Time.now
+        @pending << event
+      elsif event.start_time < Time.now || event.end_time < Time.now
+        @past << event
+      else
+        @current << event
+      end
     end
     @past
     @pending
