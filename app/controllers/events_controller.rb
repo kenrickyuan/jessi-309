@@ -15,10 +15,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    guest1 = Guest.new(name: current_user.name, event: @event)
+    guest1.save!
 
-    if @event.save
-      @guest1 = Guest.new(name: current_user.name, event: @event)
-      @guest1.save
+    if @event.save!
       redirect_to event_path(@event)
     else
       render :new
