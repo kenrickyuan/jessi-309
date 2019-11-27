@@ -4,15 +4,18 @@
   <div style="width: 22px"></div>
 </div>
 
-<div>
-  <%= simple_form_for [@event, @expense] do |f| %>
+<div class="d-flex align-items-center" style="height: calc(100vh - 120px);">
+  <div class="card mx-4 p-0 w-100">
+    <%= simple_form_for [@event, @expense] do |f| %>
     <%= f.association :guest, collection: @event.guests, label: "Who?" %>
-    <h5 class="mx-3 text-center" style="color: #472B62; font-weight: bold;">paid</h5>
+    <h5 class="text-center" style="color: #472B62; font-weight: bold;">paid</h5>
     <%= f.input :amount, input_html: { value: "" }, label: "How much?" %>
-    <h5 class="mx-3 text-center" style="color: #472B62; font-weight: bold;">for</h5>
+    <h5 class="text-center" style="color: #472B62; font-weight: bold;">for</h5>
     <%= f.input :description, label: "What?" %>
-    <div class="bottom-btn">
-      <%= f.submit "Add expense", class: "submit-btn-expenses" %>
-    </div>
-  <% end %>
+  </div>
 </div>
+
+<div class="bottom-btn">
+  <%= f.submit "Add expense", class: "submit-btn-expenses" %>
+</div>
+<% end %>

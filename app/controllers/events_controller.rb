@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_sidebar
 
   def index
     @events = Event.where(user: current_user.id).order('start_time')
