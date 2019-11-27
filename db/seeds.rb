@@ -5,8 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
+
 Event.destroy_all
+User.destroy_all
 User.create!(
   name: "mark",
   email: 'mark_ruffalo@icloud.com',
@@ -18,5 +19,6 @@ Event.create!(
   location: "Amsterdam",
   start_time: "2019-12-08 10:19:00 -0200",
   end_time: "2019-12-08 11:19:00 -0200",
-  description: "Bring your pampers!"
+  description: "Bring your pampers!",
+  user: User.first
   )
