@@ -3,7 +3,7 @@
 <div class="px-4 mt-4">
 
   <% @polls.each do |poll| %>
-  <div class="card">
+  <div class="card mb-4">
     <a class="text-decoration-none" href="<%= event_poll_path(@event, poll) %>">
       <h5 class="mb-3" style="color: #472B62;"><%= poll.question %></h5>
       <p align="right" class="mb-2" style="color: #646464;"><%= poll.response_number %> have responded</p>

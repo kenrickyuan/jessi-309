@@ -1,60 +1,59 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 <div class="box-color-pink" style="background: #FE8180;">
-  <div class="position-top" style="height: 100vh;">
-    <h1 id="title" style="font-family: noto sans">jessi.io</h1>
+  <div class="position-top" style="height: calc(92vh);">
+    <h1 id="title" style="font-family: noto sans; padding-top: 8vh;">jessi.io</h1>
     <h2 id="typewriter"></h2>
     <h2 id="typewriter1" style="font-family: noto sans">in one visual place.</h2>
     <br>
     <%= image_tag("iphone.png", :alt => "rss feed") %>
     <br>
-    <div style="padding: 20px; margin-top: 10px;">
-      <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-landing"%>
-      <%= link_to 'Sign in', new_user_session_path, class: "btn btn-landing"%>
-      <div style="padding: 20px;">
-      </div>
-      <a href="#box-color-white" class="fas fa-angle-down" id="test" style="color: #472B62;"></a>
-    </div>
   </div>
 </div>
-<div class="flex-grow">
-  <div id="box-color-white">
-    <div class="card-product">
-      <lottie-player
-      src="https://assets3.lottiefiles.com/packages/lf20_8JndGA.json"  background="transparent"  speed="0.9"  style="width: 180px; height: 210px;"  loop  autoplay >
-    </lottie-player>
-    <div class="card-product-infos" style="font-family: noto sans">
-      <h2>Polls</h2>
-      <p>Jessi generates beautiful polls to engage your guests in planning the perfect get-together.
-      Share polls with a link and comfortably browse responses and results in real-time on your dashboard.</p>
+
+<div style="color: #472B62">
+  <div class="pt-5" style="background-color: white; height: 96vh;">
+    <h2 class="text-center">Polls</h2>
+    <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_qMT31T.json"  background="transparent"  speed="1"  style="width: 100vw; height: 300px;"  loop  autoplay ></lottie-player>
+
+    <div>
+      <h4 class="mx-4 mt-5">Jessi generates beautiful polls to engage your guests in planning the perfect get-together. </h4>
+      <h4 class="mx-4 mt-5">Share polls with a link and comfortably browse responses on your dashboard.</h4>
     </div>
   </div>
-  <div class="card-product" id="pink-bg">
-    <div class="card-product-infos" style="font-family: noto sans; padding: 10px;">
-      <h2>Calendar</h2>
-      <p>Jessi aggregates all the exciting details of your event to create a calendar link that's easy to send to your friends and integrates smoothly into their Google or Apple calendar.</p>
+
+  <div class="pt-5" style="background-color: #FE8180; height: 96vh;">
+    <h2 class="text-center">Calendar</h2>
+    <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_zMAeTa.json"  background="transparent"  speed="1"  style="width: 100vw; height: 250px;"  loop  autoplay ></lottie-player>
+
+    <div>
+      <h4 class="mx-4 mt-5">Jessi aggregates all the exciting details of your event and pushes it to all your friends.</h4>
+      <h4 class="mx-4 mt-5">With both Google and Apple calendar integration, it's impossible for your friends to forget!</h4>
     </div>
-    <lottie-player
-    src="https://assets2.lottiefiles.com/datafiles/6WfDdm3ooQTEs1L/data.json"  background="#FE8180"  speed="0.8"  style="width: 180px; height: 210px;"  loop  autoplay >
-  </lottie-player>
-</div>
-<div class="card-product">
-  <lottie-player
-  src="https://assets8.lottiefiles.com/packages/lf20_4ejZJA.json"  background="transparent"  speed="0.8"  style="width: 180px; height: 210px;"  loop autoplay >
-</lottie-player>
-<div class="card-product-infos" style="font-family: noto sans">
-  <h2>Expenses</h2>
-  <p>Jessi keeps track of each event's expenses so you know exactly what's been paid for, how much it cost and who paid for it.
-  Settle up shared expenses effortlessly on the go so everyone gets their money back.</p>
-</div>
   </div>
-  <div <%= render("shared/footer") %>>
-</div>
+
+  <div class="pt-5" style="background-color: white; height: 100vh;">
+    <h2 class="text-center">Expenses</h2>
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_OdVhgq.json"  background="transparent"  speed="1"  style="width: 100vw; height: 300px;"  loop  autoplay ></lottie-player>
+
+    <div>
+      <h4 class="mx-4 mt-5">Jessi keeps track of each event's expenses so you know exactly what's been paid for, how much it cost, and who paid for it.</h4>
+      <h4 class="mx-4 mt-5">Settle up shared expenses effortlessly on the go so everyone gets their money back.</h4>
+    </div>
+  </div>
+
+
+<%= render("shared/footer") %>
+
+<a href="<%= new_user_registration_path %>" class="fixed-bottom text-center links-hero" style="background-color: #472B62; height: 8vh;">
+  <h4 style="margin-top: 2vh;">Get Started</h4>
+</a>
 <!-- easteregg animation -->
 <!-- <div id="world">
   <div id="instructions">Press and drag to make wind<br/><span class="lightInstructions">Jessi will surely appreciate</span></div>
 </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js'></script>
 <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/OrbitControls.js'></script>
- -->
+-->

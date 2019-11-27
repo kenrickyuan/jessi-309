@@ -64,11 +64,6 @@ html {
   scroll-behavior: smooth;
 }
 
-#box-color-white {
-  background-color: white;
-  height: 100%;
-  // text-align: center;
-}
 .card-product {
   overflow: hidden;
   background: white;
@@ -77,11 +72,6 @@ html {
   margin-top: 8px;
   margin-bottom: 13px;
   padding: 0 15px;
-}
-
-#pink-bg {
-  background-color: $pink;
-  padding: 10px;
 }
 
 .card-product img {
