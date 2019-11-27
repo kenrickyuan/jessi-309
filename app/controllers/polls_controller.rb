@@ -13,7 +13,6 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
-    raise
     set_poll_responses(@poll) if @poll.present?
   end
 
