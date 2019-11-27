@@ -58,7 +58,7 @@ class PollsController < ApplicationController
   @poll.link = response.parsed_response["_links"]["display"]
   @poll.typeform_id = response.parsed_response["id"]
   respond_to do |format|
-  if @poll.save!
+    if @poll.save!
 
      format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
    else
@@ -110,30 +110,36 @@ end
     end
 
     def set_poll_responses(poll)
-    typeform = poll.typeform_id
-    typeform_api = Typeform.new
-    response = typeform_api.responses(typeform)
+      typeform = poll.typeform_id
+      typeform_api = Typeform.new
+      response = typeform_api.responses(typeform)
 
-    responses = []
-    show = response.parsed_response["items"]
-    show.each do |elements|
-      elements["answers"].each do |answer|
-        if !answer["choices"]["other"].nil?
-          responses << answer["choices"]["other"]
-        end
-        if !answer["choices"]["labels"].nil?
-          responses << answer["choices"]["labels"]
-        end
+      responses = []
+      show = response.parsed_response["items"]
+      show.each do |elements|
+        elements["answers"].each do |answer|
+          if !answer["choices"]["other"].nil?
+            responses << answer["choices"]["other"]
+          end
+          if !answer["choices"]["labels"].nil?
+            responses << answer["choices"]["labels"]
+          end
 
+        end
       end
-    end
-    @count = Hash.new(0)
-    responses.flatten.each do |label|
-      @count[label] += 1
-    end
-    @count
-    @length = show.length
-    poll.responses = @count
-    poll.response_number = @length
+      @count = Hash.new(0)
+      responses.flatten.each do |label|
+        @count[label] += 1
+      end
+      @count
+      @length = show.length
+      poll.responses = @count
+      poll.response_number = @length
+
+      @sum = 0
+      @sorted_count = @count.sort_by {|k, v| -v}
+      @count.each do |key, value|
+        @sum += value
+      end
     end
   end

@@ -1,43 +1,31 @@
+<div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
+  <%= link_to image_tag('back-arrow.png', height: '22', width: '20'), event_polls_path(@event) %>
+  <h5 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62">Poll results</h5>
+  <div style="width: 22px"></div>
+</div>
+
+<div class="p-3 d-flex justify-content-around flex-column" style="color: #472B62; height: 102px;">
+  <h5 class="m-0"><%= @poll.question %></h5>
+  <p class="m-0"><%= @length %> have responded</p>
+</div>
+
+<hr style="border-width: 6px; background-color: #FE8180;" class="m-0">
+
+
+<% @sorted_count.each do |key, value| %>
+  <div class="p-3 d-flex justify-content-between" style="color: #472B62;">
+    <div d-flex align-items-center>
+      <h5 class="my-2"><%= key %></h5>
+      <p class="m-0" style="color: #646464;"><%= value %> votes</p>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <h5 class="m-0"><%= value.to_f / @sum.to_f * 100 %>%</h5>
+    </div>
+  </div>
+  <hr style="border-width: 4px;" class="m-0">
+
+<% end %>
+
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Typeform:</strong>
-  <%= @poll.form_title %>
-</p>
-
-<p>
-  <strong>Event:</strong>
-  <%= @poll.event.title%>
-</p>
-
-<p>
-  <strong>Question</strong>
-  <%= @poll.question %>
-</p>
-
-<p>
-  <strong>Answers</strong>
-  Total : <%= @length %>
-  <table>
-  <thead>
-    <tr>
-      <th>Option</th>
-      <th>Votes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @count.each do |key, value| %>
-      <tr>
-        <td><%= "#{key.to_s}" %></td>
-        <td><%= "#{value.to_s}"%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-</p>
-
-<%= link_to "Delete Poll", event_poll_path(@event, @poll.typeform_id), method: :delete, data: {confirm: "Are you sure?"} %>
-<%= link_to 'Back', event_polls_path(@event) %>
+<!-- NOT SURE WHERE TO PUT THIS NOTICE P WITHOUT MESSING WITH THE FORMATTING. WE WILL MOVE IT WHEN WE STYLE THE NOTICES/ALERTS -->

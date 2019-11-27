@@ -1,37 +1,40 @@
-<%= @expense[:description] %>
+<div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
+  <%= link_to image_tag('back-arrow.png', height: '22', width: '20'), event_expenses_path(@event) %>
+  <h5 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62"><%= @expense[:description] %></h5>
+  <div style="width: 22px"></div>
+</div>
 
-<ul>
+
   <!-- Payment transactions -->
   <% @payment_transactions.reverse.each do |transaction| %>
-  <li>
+
     <% if transaction[:debt] == 0 %>
-    <strong><%= transaction[:payer].name %> has setted up with <%= transaction[:payee].name %>!</strong>
+    <h5><%= transaction[:payer].name %> has setted up with <%= transaction[:payee].name %>!</h5>
+    <hr style="border-width: 4px;" class="m-0">
     <% else %>
-    <%= transaction[:payer].name %> now owes <%= humanized_money_with_symbol transaction[:debt] %> to <%= transaction[:payee].name %>
+    <h5><%= transaction[:payer].name %> now owes <%= humanized_money_with_symbol transaction[:debt] %> to <%= transaction[:payee].name %></h5>
+    <hr style="border-width: 4px;" class="m-0">
     <% end %>
-  </li>
-  <li>
-    <%= transaction[:payer].name %> paid <%= humanized_money_with_symbol transaction[:amount] %> to <%= transaction[:payee].name %>
-  </li>
+
+    <h5><%= transaction[:payer].name %> paid <%= humanized_money_with_symbol transaction[:amount] %> to <%= transaction[:payee].name %></h5>
+    <hr style="border-width: 4px;" class="m-0">
+
   <% end %>
+
   <!-- Debt transactions -->
   <% @transactions.each do |transaction| %>
   <% if transaction.is_debt == true %>
-  <li>
-    <%= transaction.payer.name %> owes <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %>
-  </li>
+
+    <h5><%= transaction.payer.name %> owes <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %></h5>
+
   <% end %>
   <% end %>
+
   <!-- The expense -->
-  <li>
-    <%= @expense.guest.name %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %>
-  </li>
-</ul>
+  <h5><%= @expense.guest.name %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %></h5>
+  <hr style="border-width: 4px;" class="m-0">
+
+
 
 <!-- New transaction -->
 <%= link_to "Settle up", new_event_expense_transaction_path(params[:event_id], @expense) %>
-
-<!-- Delete this expense -->
-<%= link_to "Delete this expense", event_expense_path(@event, @expense),
-method: "DELETE",
-data: { confirm: "Are you sure?" } %>
