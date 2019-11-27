@@ -10,14 +10,14 @@ const TypeWriter = () => {
 
   var typewriter = new Typewriter(el, { loop: true });
 
-  typewriter.typeString('Plan')
+  typewriter.typeString('organizes')
       .pauseFor(2500)
       .deleteAll()
-      .typeString('Organize')
+      .typeString('tracks')
       .pauseFor(2500)
       .deleteAll()
-      .typeString('Track')
-      .pauseFor(2500)
+      .typeString('takes care of')
+      .pauseFor(7000)
       .start();
 }
 
