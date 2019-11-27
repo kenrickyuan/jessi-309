@@ -1,26 +1,107 @@
-<div id="mySidebar" class="sidebar">
-    <h2>Your Events</h2>
-    <% if !(@current.empty?) %>
-    <h3 class ="header-sidebar">Today</h3>
-    <% @current.each do |current_event| %>
-    <div class="event"><h2><%= link_to current_event.title, event_path(current_event) %></h2>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+
+  <div id="dismiss">
+    <i class="fas fa-arrow-left"></i>
+  </div>
+
+  <div class="sidebar-header">
+    <h3>Your Events</h3>
+  </div>
+  <% if !(@current.empty?) %>
+  <ul class="list-unstyled components">
+
+    <p class="sidebar-sub-header">Today</p>
+    <li class="active">
+      <ul class="list-unstyled" id="homeSubmenu">
+       <% @current.each do |current_event| %>
+       <li class="list-items-unstyled">
+        <%= link_to current_event.title, event_path(current_event) %>
+      </li>
       <% end %>
-    </div>
+    </ul>
     <% end %>
     <% if !(@pending.empty?) %>
-    <h3 class ="header-sidebar">Upcomming</h3>
-    <div class="event">
-      <% @pending.each do |pending_event| %>
-      <h2><%= link_to pending_event.title, event_path(pending_event) %></h2>
-      <% end %>
-    </div>
-    <% end %>
-    <% if !(@past.empty?) %>
-    <h3 class ="header-sidebar">Past</h3>
-    <div class="event">
-      <% @past.each do |past_event| %>
-      <h2><%= link_to past_event.title, event_path(past_event) %></h2>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
+    <ul class="list-unstyled components">
+      <p class="sidebar-sub-header">Upcoming</p>
+      <li class="active">
+
+        <ul class="list-unstyled" id="homeSubmenu">
+          <% @pending.each do |pending_event| %>
+          <li class="list-items-unstyled">
+            <%= link_to pending_event.title, event_path(pending_event) %>
+          </li>
+          <% end %>
+        </ul>
+        <% end %>
+        <% if !(@past.empty?) %>
+        <ul class="list-unstyled components">
+          <p class="sidebar-sub-header">Past</p>
+          <li class="active">
+            <ul class="list-unstyled" id="homeSubmenu">
+             <% @past.each do |past_event| %>
+             <li class="list-items-unstyled">
+              <%= link_to past_event.title, event_path(past_event) %>
+            </li>
+            <% end %>
+          </ul>
+          <% end %>
+            <!-- </li>
+            <li>
+                <a href="#">About</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+          </ul> -->
+        </nav>
+
+        <!-- Page Content -->
+
+        <!-- Dark Overlay element -->
+        <!-- <div class="overlay"></div> -->
+
+        <% content_for :sidebar do%>
+
+
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+              theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+            // hide sidebar
+            $('#sidebar').removeClass('active');
+            // hide overlay
+            $('.overlay').removeClass('active');
+          });
+
+            $('#sidebarCollapse').on('click', function () {
+            // open sidebar
+            $('#sidebar').addClass('active');
+            // fade in the overlay
+            $('.overlay').addClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+          });
+          });
+        </script>
+
+        <% end %>
