@@ -11,12 +11,18 @@
       <% if @event.start_time.present? %>
       <p class="mb-2"><%= @event.start_time.strftime("%d %b %Y, %H:%M") %></p>
       <p><%= @event.end_time.strftime("%d %b %Y, %H:%M") %></p>
+      <% else %>
+      <p>Haven't decided? Create a poll!</p>
       <% end %>
     </div>
 
     <div class="divider mb-3">
       <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Location</h5>
+      <% if @event.location.present? %>
       <p><%= @event.location %></p>
+      <% else %>
+      <p>Haven't decided? Create a poll!</p>
+      <% end %>
     </div>
 
     <div class="mb-3">
