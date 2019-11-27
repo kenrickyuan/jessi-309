@@ -1,25 +1,36 @@
 <%= render 'shared/navbar-expanded-expenses' %>
 <%= render "shared/sidebar" %>
-<div>
-  <%= @event.title %>
 
-  <!-- Form to filter the expenses by description and/or guest -->
-  <%= simple_form_for :search, url: event_expenses_path, method: "GET" do |f| %>
-  <%= f.input :description, collection: @event.expenses, label_method: :description, value_method: :description %>
-  <%= f.input :guest, collection: @event.guests %>
-  <%= f.submit "Filter expenses" %>
-  <% end %>
+<div class="px-4 mt-4">
+
+  <%= render 'collapsible-filter' %>
 
   <!-- Each expense -->
-  <ul>
-    <% @expenses.each do |expense| %>
-    <li>
-      <%= expense.guest.name %> paid <%= humanized_money_with_symbol expense.amount %> for <%= expense.description %>
-      <%= link_to "Show", event_expense_path(@event, expense) %>
-    </li>
-    <% end %>
-  </ul>
 
-  <!-- New expense -->
-  <%= link_to "New expense", new_event_expense_path %>
+  <% @expenses.each do |expense| %>
+  <div class="card mt-4">
+    <a class="text-decoration-none d-flex justify-content-between" href="<%= event_expense_path(@event, expense) %>">
+      <h5 class="mb-3 text-center" style="color: #472B62;"><%= expense.description %></h5>
+      <h5 style="color: #472B62;"><%= humanized_money_with_symbol expense.amount %></h5>
+    </a>
+    <div class="d-flex justify-content-between">
+      <a class="text-decoration-none" href="<%= event_expense_path(@event, expense) %>" style="width: 70%;">
+        <h6 style="color: #646464; font-size: 1rem;">paid by <%= expense.guest.name %></h6>
+        <!-- <h6 class="mb-0" style="color: #646464; font-size: 1rem;"><%= expense.created_at %></h6>  -->
+        <!-- This is for the time stamp. For the demo atm, it's not very nice to show the timestamp and it's not that important for the demo, so we'll comment it out -->
+      </a>
+      <%= link_to image_tag('delete.png', height: '25', width: '25'), event_expense_path(@event, expense), method: :delete, data: {confirm: "Are you sure you want to delete this guest?"} %>
+    </div>
+  </div>
+  <% end %>
+
+</div>
+
+<!-- makes sure the last card isn't covered by the bottom btn -->
+<div style="height: 115px;"></div>
+
+
+<!-- New expense -->
+<div class="bottom-btn">
+  <%= link_to "New expense", new_event_expense_path, class: "submit-btn-expenses" %>
 </div>
