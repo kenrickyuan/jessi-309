@@ -52,6 +52,7 @@
   font-family: Noto Sans;
   line-height: 27px;
   width: 38%;
+  max-width: 230px;
 }
 
 .btn-landing:hover {
@@ -70,13 +71,19 @@ html {
 }
 .card-product {
   overflow: hidden;
-  height: 120px;
   background: white;
   display: flex;
   align-items: center;
-  margin-top: 47px;
+  margin-top: 8px;
   margin-bottom: 13px;
+  padding: 0 15px;
 }
+
+#pink-bg {
+  background-color: $pink;
+}
+
+
 
 .card-product img {
   height: 100%;
@@ -88,15 +95,15 @@ html {
 .card-product h2 {
   font-size: 20px;
   font-weight: bold;
-  margin: 0;
+  margin-top: 10px;
 }
 
 .card-product p {
   font-size: 14px;
   line-height: 1.4;
   opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
+  margin-bottom: 9;
+  margin-top: 12px;
 }
 
 .card-product .card-product-infos {

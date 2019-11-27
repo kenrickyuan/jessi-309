@@ -7,6 +7,8 @@ import "../pluggins/guests";
 import "../pluggins/typewriter";
 import "../pluggins/sidebar";
 import "../pluggins/sidebarclose";
+// import "../plugins/clipboard";
+
 
 // iniDatePicker();
 // initMultipleChoices();
