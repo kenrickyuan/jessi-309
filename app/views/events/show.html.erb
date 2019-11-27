@@ -27,7 +27,11 @@
 
     <div class="mb-3">
       <h5 class="mb-2" style="font-family: Noto Sans; color: #472B62;">Description</h5>
+      <% if @event.description.present? %>
       <p><%= simple_format(@event.description) %></p>
+      <% else %>
+      <p>Add a nice little description so your guests know exactly what's to come!</p>
+      <% end %>
     </div>
     <div class="d-flex justify-content-between">
       <%= image_tag('share.png', height: '25', width: '25', class: "clipboard-btn", :onclick => "alert('Event copied, paste it to your guests!')", data: { clipboard_action: "copy", clipboard_text: "#{@share_message}" }) %>

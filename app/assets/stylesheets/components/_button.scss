@@ -26,6 +26,10 @@
   text-decoration: none;
   &:hover {
     text-decoration: none;
+    color: white;
+  }
+  &:focus {
+    outline: none;
   }
 }
 
@@ -41,6 +45,10 @@
   text-decoration: none;
   &:hover {
     text-decoration: none;
+    color: white;
+  }
+  &:focus {
+    outline: none;
   }
 }
 
@@ -57,5 +65,9 @@
   text-decoration: none;
   &:hover {
     text-decoration: none;
+    color: white;
+  }
+  &:focus {
+    outline: none;
   }
 }
