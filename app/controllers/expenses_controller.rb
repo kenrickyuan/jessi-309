@@ -89,7 +89,6 @@ class ExpensesController < ApplicationController
       @payment_transactions_hash = {}
       @payment_transactions_hash[transaction.payer] = @payment_transactions.last
     end
-    raise
   end
 
   def filter_by_description
