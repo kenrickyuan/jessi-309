@@ -4,40 +4,36 @@
   <div style="width: 22px"></div>
 </div>
 
-  <!-- Latest -->
+<!-- Latest settlement/debt transaction -->
+<% @payment_transactions_hash.each_value do |transaction| %>
+<% if transaction[:difference] == 0 %>
+<h5><%= transaction[:payer].name %> has setted up with <%= transaction[:payee].name %>!</h5>
+<% else %>
+<h5><%= transaction[:payer].name %> now owes <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
+<% end %>
+<% end %>
 
+<h4>History</h4>
+<!-- Latest payment transaction -->
+<% @payment_transactions_hash.each_value do |transaction| %>
+<% next if transaction[:is_debt] == true %>
+<%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
+<h5><%= transaction[:payer].name %> paid <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+<% end %>
 
-  <!-- History -->
-  <!-- Payment transactions -->
-  <% @payment_transactions.reverse.each do |transaction| %>
+<!-- History of transactions -->
+<% @payment_transactions.reverse.each do |transaction| %>
+<%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
+<h5><%= transaction[:payer].name %> owes <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
+<% next if transaction[:is_debt] == true %>
+<%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
+<h5><%= transaction[:payer].name %> paid <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+<% end %>
 
-    <% if transaction[:debt] == 0 %>
-    <h5><%= transaction[:payer].name %> has setted up with <%= transaction[:payee].name %>!</h5>
-    <hr style="border-width: 4px;" class="m-0">
-    <% else %>
-    <h5><%= transaction[:payer].name %> now owes <%= humanized_money_with_symbol transaction[:debt] %> to <%= transaction[:payee].name %></h5>
-    <hr style="border-width: 4px;" class="m-0">
-    <% end %>
-
-    <h5><%= transaction[:payer].name %> paid <%= humanized_money_with_symbol transaction[:amount] %> to <%= transaction[:payee].name %></h5>
-    <hr style="border-width: 4px;" class="m-0">
-
-  <% end %>
-
-  <!-- Debt transactions -->
-  <% @transactions.each do |transaction| %>
-  <% if transaction.is_debt == true %>
-
-    <h5><%= transaction.payer.name %> owes <%= humanized_money_with_symbol transaction.amount %> to <%= transaction.payee.name %></h5>
-
-  <% end %>
-  <% end %>
-
-  <!-- The expense -->
-  <h5><%= @expense.guest.name %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %></h5>
-  <hr style="border-width: 4px;" class="m-0">
-
-
+<!-- The expense -->
+<%= @expense.created_at.strftime("%d %b %Y, %H:%M") %>
+<h5><%= @expense.guest.name %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %></h5>
+<hr style="border-width: 4px;" class="m-0">
 
 <!-- New transaction -->
 <%= link_to "Settle up", new_event_expense_transaction_path(params[:event_id], @expense) %>

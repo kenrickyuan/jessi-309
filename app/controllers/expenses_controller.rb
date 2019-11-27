@@ -72,10 +72,21 @@ class ExpensesController < ApplicationController
 
   def settle_transactions
     @transactions_hash = {}
-    @payment_transactions = []
+    @payment_transactions_hash = {}
     @transactions.each do |transaction|
-      @transactions_hash[transaction.payer] = transaction.amount if transaction.is_debt == true
+      next if transaction.is_debt == false
+
+      @transactions_hash[transaction.payer] = transaction.amount
+      payment_transaction_details = {}
+      payment_transaction_details[:payer] = transaction.payer
+      payment_transaction_details[:payee] = transaction.payee
+      payment_transaction_details[:datetime] = transaction.created_at
+      payment_transaction_details[:amount] = transaction.amount
+      payment_transaction_details[:difference] = @transactions_hash[transaction.payer]
+      payment_transaction_details[:is_debt] = true
+      @payment_transactions_hash[transaction.payer] = payment_transaction_details
     end
+    @payment_transactions = []
     @transactions.each do |transaction|
       next if transaction.is_debt == true
 
@@ -83,20 +94,24 @@ class ExpensesController < ApplicationController
       payment_transaction_details = {}
       payment_transaction_details[:payer] = transaction.payer
       payment_transaction_details[:payee] = transaction.payee
+      payment_transaction_details[:datetime] = transaction.created_at
       payment_transaction_details[:amount] = transaction.amount
-      payment_transaction_details[:debt] = @transactions_hash[transaction.payer]
-      @payment_transactions << payment_transaction_details
-      @payment_transactions_hash = {}
-      @payment_transactions_hash[transaction.payer] = @payment_transactions.last
+      payment_transaction_details[:difference] = @transactions_hash[transaction.payer]
+      payment_transaction_details[:is_debt] = false
+      if @payment_transactions_hash[transaction.payer] == nil
+        @payment_transactions_hash[transaction.payer] = payment_transaction_details
+      else
+        @payment_transactions << @payment_transactions_hash[transaction.payer]
+        @payment_transactions_hash[transaction.payer] = payment_transaction_details
+      end
     end
-    raise
   end
 
-  def filter_by_description
-    @expenses = @expenses.where(description: params[:search][:description])
-  end
+    def filter_by_description
+      @expenses = @expenses.where(description: params[:search][:description])
+    end
 
-  def filter_by_guest
-    @expenses = @expenses.where(guest: params[:search][:guest])
+    def filter_by_guest
+      @expenses = @expenses.where(guest: params[:search][:guest])
+    end
   end
-end
