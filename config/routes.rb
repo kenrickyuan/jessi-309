@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'pages/welcome', to: 'pages#welcome', as: :welcome
   resources :events do
     resources :polls do
       resources :fields

@@ -86,7 +86,10 @@ class ExpensesController < ApplicationController
       payment_transaction_details[:amount] = transaction.amount
       payment_transaction_details[:debt] = @transactions_hash[transaction.payer]
       @payment_transactions << payment_transaction_details
+      @payment_transactions_hash = {}
+      @payment_transactions_hash[transaction.payer] = @payment_transactions.last
     end
+    raise
   end
 
   def filter_by_description
