@@ -4,3 +4,4 @@ $(document).ready(function(){
   console.log(clipboard);
 
 });
+

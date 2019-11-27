@@ -18,6 +18,7 @@ gem 'webpacker'
 gem 'httparty'
 gem 'datetime_picker_input'
 gem 'money-rails'
+gem 'clipboard-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
