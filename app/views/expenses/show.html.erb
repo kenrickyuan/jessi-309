@@ -7,9 +7,9 @@
 <!-- Latest settlement/debt transaction -->
 <% @payment_transactions_hash.each_value do |transaction| %>
 <% if transaction[:difference] == 0 %>
-<h5><%= transaction[:payer].name %> has setted up with <%= transaction[:payee].name %>!</h5>
+<h5><%= transaction[:payer].name.capitalize %> has setted up with <%= transaction[:payee].name.capitalize %>!</h5>
 <% else %>
-<h5><%= transaction[:payer].name %> now owes <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
+<h5><%= transaction[:payer].name.capitalize %> now owes <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
 <% end %>
 <% end %>
 
@@ -18,21 +18,21 @@
 <% @payment_transactions_hash.each_value do |transaction| %>
 <% next if transaction[:is_debt] == true %>
 <%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
-<h5><%= transaction[:payer].name %> paid <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+<h5><%= transaction[:payer].name.capitalize %> paid <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
 <% end %>
 
 <!-- History of transactions -->
 <% @payment_transactions.reverse.each do |transaction| %>
 <%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
-<h5><%= transaction[:payer].name %> owes <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
+<h5><%= transaction[:payer].name.capitalize %> owes <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
 <% next if transaction[:is_debt] == true %>
 <%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
-<h5><%= transaction[:payer].name %> paid <%= transaction[:payee].name %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+<h5><%= transaction[:payer].name.capitalize %> paid <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
 <% end %>
 
 <!-- The expense -->
 <%= @expense.created_at.strftime("%d %b %Y, %H:%M") %>
-<h5><%= @expense.guest.name %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %></h5>
+<h5><%= @expense.guest.name.capitalize %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %></h5>
 <hr style="border-width: 4px;" class="m-0">
 
 <!-- New transaction -->
