@@ -60,11 +60,11 @@ class PollsController < ApplicationController
   respond_to do |format|
     if @poll.save!
 
-     format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
+    format.html { redirect_to event_polls_path(@event), notice: 'Poll was successfully created.' }
    else
     format.html { render :new }
   end
-  #@poll.link = response.parsed_response["theme"]["href"]
+  # @poll.link = response.parsed_response["theme"]["href"]
 end
 end
 
@@ -116,7 +116,9 @@ end
 
       responses = []
       show = response.parsed_response["items"]
-      if !show.empty?
+      if show.nil?
+        poll.response_number = 0
+      else
         show.each do |elements|
           elements["answers"].each do |answer|
             if !answer["choices"]["other"].nil?
@@ -127,20 +129,20 @@ end
             end
           end
         end
-      end
-      @count = Hash.new(0)
-      responses.flatten.each do |label|
-        @count[label] += 1
-      end
-      @count
-      @length = show.length
-      poll.responses = @count
-      poll.response_number = @length
+        @count = Hash.new(0)
+        responses.flatten.each do |label|
+          @count[label] += 1
+        end
+        @count
+        @length = show.length
+        poll.responses = @count
+        poll.response_number = @length
 
-      @sum = 0
-      @sorted_count = @count.sort_by {|k, v| -v}
-      @count.each do |key, value|
-        @sum += value
+        @sum = 0
+        @sorted_count = @count.sort_by {|k, v| -v}
+        @count.each do |key, value|
+          @sum += value
+        end
       end
     end
   end

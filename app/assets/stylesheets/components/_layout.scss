@@ -1,4 +1,19 @@
 body {
   font-family: Noto Sans;
   background-color: white;
+  &:focus {
+    outline: none;
+  }
+}
+
+h5 {
+  &:focus {
+    outline: none;
+  }
+}
+
+a {
+  &:focus {
+    outline: none;
+  }
 }
