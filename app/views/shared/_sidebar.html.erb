@@ -47,8 +47,8 @@
             <% end %>
           </ul>
           <% end %>
-            <!-- </li>
-            <li>
+            </li>
+            <!-- <li>
                 <a href="#">About</a>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -62,14 +62,14 @@
                         <a href="#">Page 3</a>
                     </li>
                 </ul>
+            </li> -->
+            <li class="sidebar-header">
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             </li>
-            <li>
-                <a href="#">Portfolio</a>
-            </li>
-            <li>
+            <!-- <li>
                 <a href="#">Contact</a>
-            </li>
-          </ul> -->
+            </li> -->
+          </ul>
         </nav>
 
         <!-- Page Content -->
