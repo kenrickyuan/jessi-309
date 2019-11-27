@@ -17,20 +17,20 @@
 /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
 // const sideBar = document.querySelector('.sidebar')
 // export default openSideBar;
-const sideBtn = document.querySelector(".openbtn");
-const sideBar = document.getElementById("mySidebar");
-const toggleBtn = document.querySelector(".openbtn");
+// const sideBtn = document.querySelector(".openbtn");
+// const sideBar = document.getElementById("mySidebar");
+// const toggleBtn = document.querySelector(".openbtn");
 
-const initSidebar = () => {
-  console.log('hezz')
+// const initSidebar = () => {
+//   console.log('hezz')
 
-  toggleBtn.addEventListener("click", (event) => {
-    sideBar.classList.toggle("toggleSidebar");
-    console.log(sideBtn.classList.toggle("toggleSidebtn"));
-  });
-}
+//   toggleBtn.addEventListener("click", (event) => {
+//     sideBar.classList.toggle("toggleSidebar");
+//     console.log(sideBtn.classList.toggle("toggleSidebtn"));
+//   });
+// }
 
-export default initSidebar;
+// export default initSidebar;
 //class Side {
  // open() {
   //   document.getElementById("mySidebar").style.width = "250px";
@@ -43,4 +43,6 @@ export default initSidebar;
 // myBar = new Side();
 // if (myBar.open)
 // document.getElementById("demo").innerHTML = myBar.present("Hello");
+
+
 
