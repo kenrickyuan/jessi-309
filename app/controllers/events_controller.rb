@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_sidebar
+
   def index
-    @events = Event.order('start_time')
+    @events = Event.where(user: current_user.id).order('start_time')
   end
 
   def show
@@ -14,6 +16,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
     guest1 = Guest.new(name: current_user.name, event: @event)
     guest1.save!
 
@@ -57,5 +60,24 @@ class EventsController < ApplicationController
     # client= key is the api key from addevent.com
     @link_google = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
     @link_apple = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
+  end
+
+  def set_sidebar
+    @events = Event.where(user: current_user.id).order('start_time')
+    @past = []
+    @pending = []
+    @current = []
+    @events.each do |event|
+      if event.start_time.nil? || event.start_time > Time.now
+        @pending << event
+      elsif event.start_time < Time.now || event.end_time < Time.now
+        @past << event
+      else
+        @current << event
+      end
+    end
+    @past
+    @pending
+    @current
   end
 end
