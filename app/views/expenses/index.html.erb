@@ -14,7 +14,7 @@
     </a>
     <div class="d-flex justify-content-between">
       <a class="text-decoration-none" href="<%= event_expense_path(@event, expense) %>" style="width: 70%;">
-        <h6 style="color: #646464; font-size: 1rem;">paid by <%= expense.guest.name %></h6>
+        <h6 style="color: #646464; font-size: 1rem;">paid by <%= expense.guest.name.capitalize %></h6>
         <!-- <h6 class="mb-0" style="color: #646464; font-size: 1rem;"><%= expense.created_at %></h6>  -->
         <!-- This is for the time stamp. For the demo atm, it's not very nice to show the timestamp and it's not that important for the demo, so we'll comment it out -->
       </a>

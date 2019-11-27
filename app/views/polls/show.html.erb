@@ -6,7 +6,11 @@
 
 <div class="p-3 d-flex justify-content-around flex-column" style="color: #472B62; height: 102px;">
   <h5 class="m-0"><%= @poll.question %></h5>
-  <p class="m-0"><%= @length %> have responded</p>
+  <% if @length == 1 %>
+  <p class="m-0"><%= @length %> response</p>
+  <% else %>
+  <p class="m-0"><%= @length %> responses</p>
+  <% end %>
 </div>
 
 <hr style="border-width: 6px; background-color: #FE8180;" class="m-0">
@@ -16,7 +20,11 @@
   <div class="p-3 d-flex justify-content-between" style="color: #472B62;">
     <div d-flex align-items-center>
       <h5 class="my-2"><%= key %></h5>
+      <% if value == 1 %>
+      <p class="m-0" style="color: #646464;"><%= value %> vote</p>
+      <% else %>
       <p class="m-0" style="color: #646464;"><%= value %> votes</p>
+      <% end %>
     </div>
 
     <div class="d-flex align-items-center">

@@ -76,22 +76,22 @@ class ExpensesController < ApplicationController
     transaction_details[:payee] = transaction.payee
     transaction_details[:datetime] = transaction.created_at
     transaction_details[:amount] = transaction.amount
-    transaction_details[:difference] = @balance[transaction.payer]
+    transaction_details[:difference] = @balance[transaction.payer.name]
     transaction_details
   end
 
   def settle_transactions
-    @balance = {}
+    @balance = Hash.new(0)
     @payment_transactions_hash = {}
     @payment_transactions = []
     @transactions.each do |transaction|
       if transaction.is_debt
-        @balance[transaction.payer] = transaction.amount
+        @balance[transaction.payer.name] = transaction.amount
         transaction_details = set_transaction_details(transaction)
         transaction_details[:is_debt] = true
         @payment_transactions_hash[transaction.payer] = transaction_details
       else
-        @balance[transaction.payer] -= transaction.amount
+        @balance[transaction.payer.name] -= transaction.amount
         transaction_details = set_transaction_details(transaction)
         transaction_details[:is_debt] = false
         if @payment_transactions_hash[transaction.payer] == nil
