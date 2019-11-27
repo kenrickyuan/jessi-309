@@ -7,7 +7,7 @@ import $ from 'jquery';
 // import "../pluggins/typewriter";
 // import "../pluggins/sidebar";
 // import "../pluggins/sidebarclose";
-// import "../plugins/clipboard";
+import "../plugins/clipboard";
 
 import iniDatePicker from "../plugins/datepicker";
 import initMultipleChoices from "../pluggins/choices";
