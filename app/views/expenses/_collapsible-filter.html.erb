@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-between">
-  <button class="submit-btn d-flex justify-content-between px-3" style="width: 90px;" type="button" data-toggle="collapse" data-target="#collapseExpenseForm" aria-expanded="false" aria-controls="collapseExpenseForm">
+  <button class="purple-btn d-flex justify-content-around px-3" style="width: 100px;" type="button" data-toggle="collapse" data-target="#collapseExpenseForm" aria-expanded="false" aria-controls="collapseExpenseForm">
     <%= image_tag('search.png', height: '20', width: '20') %>
     <h6 class="m-0">Find</h6>
   </button>
-  <%= link_to "Reset", event_expenses_path(@event), class: "submit-btn w-25" %>
+  <%= link_to "Reset", event_expenses_path(@event), class: "purple-btn w-25" %>
 </div>
 
 
@@ -15,6 +15,6 @@
   <%= f.input :description, collection: @event.expenses, label_method: :description, value_method: :description %>
   <h5 class="text-center p-0 mt-2 mb-0" style="color: #472B62;">or</h5>
   <%= f.input :guest, collection: @event.guests %>
-  <input type="submit" class="submit-btn mt-4" style="width: 100%;" name="commit" value="Filter expenses" data-disable-with="Filter expenses" data-toggle="collapse" href="#collapseExpenseForm" role="button" aria-expanded="false" aria-controls="collapseExpenseForm">
+  <input type="submit" class="purple-btn mt-4" style="width: 100%;" name="commit" value="Filter expenses" data-disable-with="Filter expenses" data-toggle="collapse" href="#collapseExpenseForm" role="button" aria-expanded="false" aria-controls="collapseExpenseForm">
   <% end %>
 </div>

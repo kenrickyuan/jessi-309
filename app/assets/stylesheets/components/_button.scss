@@ -29,6 +29,21 @@
   }
 }
 
+.purple-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $purple;
+  color: white;
+  border-radius: 19.5px;
+  width: 30%;
+  height: 38px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .submit-btn-expenses {
   display: flex;
   justify-content: center;

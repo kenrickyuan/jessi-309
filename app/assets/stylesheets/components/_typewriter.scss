@@ -9,3 +9,10 @@
     border-color: transparent;
   }
 }
+
+#typewriter .Typewriter__cursor{
+  margin-left: -6px;
+}
+#typewriter .Typewriter__wrapper{
+  margin-left: 6px;
+}
