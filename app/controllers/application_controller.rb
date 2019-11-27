@@ -8,19 +8,25 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
-
-  def set_dropdown
-  @events = Event.order('start_time')
+def set_sidebar
+    @events = Event.order('start_time')
     @past = []
     @pending = []
     @current = []
     @events.each do |event|
-      @past << event if event.end_time < Time.now
-      @pending << event if event.start_time > Time.now
-      @current << event if (event.start_time <= Time.now) && (event.end_time >= Time.now)
+      if event.start_time.nil? || event.start_time > Time.now
+        @pending << event
+      elsif event.start_time < Time.now || event.end_time < Time.now
+        @past << event
+      else
+        @current << event
+      end
     end
     @past
     @pending
     @current
   end
-end
+Collapse
+
+
+
