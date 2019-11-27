@@ -51,15 +51,19 @@ class EventsController < ApplicationController
   end
 
   def set_event_link
-    # time is currently in the wrong format but I will change that later
     start_date = CGI.escape(@event.start_time.strftime("%m/%d/%Y %H:%M")) if @event.start_time.present?
     end_date = CGI.escape(@event.end_time.strftime("%m/%d/%Y %H:%M")) if @event.end_time.present?
     title = CGI.escape(@event.title)
     description = CGI.escape(@event.description)
     location = CGI.escape(@event.location)
     # client= key is the api key from addevent.com
-    @link_google = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
-    @link_apple = "https://www.addevent.com/dir/?client=aheAUbQLvzsrIoghRmUl78304&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
+    @link_google = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
+    @link_apple = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
+    @share_message = "#{@event.title}
+    Add to your Apple calendar:
+    #{@link_apple}
+    Add to your Google calendar:
+    #{@link_google}"
   end
 
   def set_sidebar
