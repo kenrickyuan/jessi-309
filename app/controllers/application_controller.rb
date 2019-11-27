@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_sidebar
 
   protected
 
@@ -11,11 +10,15 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || events_path
+    @events = Event.where(user: resource)
+    if !@events.empty?
+      event_path(@events.last)
+    else
+      root_path
   end
-  def set_sidebar
 
-  @events = Event.order('start_time')
+  def set_sidebar
+    @events = Event.order('start_time')
     @past = []
     @pending = []
     @current = []
@@ -29,8 +32,5 @@ class ApplicationController < ActionController::Base
         @current << event
       end
     end
-    @past
-    @pending
-    @current
   end
 end

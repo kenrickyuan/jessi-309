@@ -18,11 +18,13 @@ ActiveRecord::Schema.define(version: 2019_11_21_182519) do
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.string "location"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.date "start_time"
+    t.date "end_time"
     t.text "description"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -96,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_182519) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "users"
   add_foreign_key "expenses", "events"
   add_foreign_key "expenses", "guests"
   add_foreign_key "fields", "events"

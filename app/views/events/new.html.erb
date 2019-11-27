@@ -4,29 +4,4 @@
   <div style="width: 22px"></div>
 </div>
 
-<div class="sign-up-container">
-<h1 class="form-h1">Add new event</h1>
-
-
-
-      <%= simple_form_for @event, html: { multipart: true } do |f| %>
-        <div class="form-inputs">
-          <%= f.input :title %>
-          <%= f.input :location %>
-          <div class="form-inputs-numbers"> Event start-time
-            <%= f.input :start_time, as: 'text', input_html: {class: 'picker'}, label: false%>
-          </div>
-          <div class="form-inputs-numbers"> Event end-time
-            <%= f.input :end_time, as: 'text', input_html: {class: 'picker'}, label: false%>
-
-          </div>
-
-            <%= f.input :description %>
-        </div>
-
-     <div class="form-submit-btn d-flex justify-content-between">
-
-      <%= f.button :submit, "Create Event", { class: 'login-btn' , id: 'new-event-btn'}  %>
-    </div>
-    <% end %>
-</div>
+<%= render 'event-form' %>
