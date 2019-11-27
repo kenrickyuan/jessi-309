@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
     if !@events.empty?
       event_path(@events.last)
     else
-      root_path
+      :welcome
+    end
   end
 
   def set_sidebar
