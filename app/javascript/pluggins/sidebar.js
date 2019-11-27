@@ -17,11 +17,13 @@
 /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
 // const sideBar = document.querySelector('.sidebar')
 // export default openSideBar;
+const sideBtn = document.querySelector(".openbtn");
+const sideBar = document.getElementById("mySidebar");
+const toggleBtn = document.querySelector(".openbtn");
 
 const initSidebar = () => {
-  const sideBtn = document.querySelector(".openbtn");
-  const sideBar = document.getElementById("mySidebar");
-  toggleBtn = document.querySelector(".openbtn");
+  console.log('hezz')
+
   toggleBtn.addEventListener("click", (event) => {
     sideBar.classList.toggle("toggleSidebar");
     console.log(sideBtn.classList.toggle("toggleSidebtn"));
