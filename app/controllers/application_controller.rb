@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
       event_path(@events.last)
     else
       root_path
+    end
   end
 
   def set_sidebar
