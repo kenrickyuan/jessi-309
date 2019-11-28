@@ -11,7 +11,7 @@
         <% if !(@current.empty?) %>
       <div class="list-unstyled components">
 
-        <p class="sidebar-sub-header" style="font-family: bold;">Today</p>
+        <p class="sidebar-sub-header" style="font-weight: bold;">Today</p>
         <div class="active">
           <div class="list-unstyled" id="homeSubmenu">
             <% @current.each do |current_event| %>
@@ -25,7 +25,7 @@
             <% end %>
             <% if !(@pending.empty?) %>
         <div class="list-unstyled components">
-            <p class="sidebar-sub-header" style="font-family: bold;">Upcoming</p>
+            <p class="sidebar-sub-header" style="font-weight: bold;">Upcoming</p>
           <div class="active">
             <div class="list-unstyled" id="homeSubmenu">
                 <% @pending.each do |pending_event| %>
@@ -39,7 +39,7 @@
           <% end %>
           <% if !(@past.empty?) %>
           <div class="list-unstyled components">
-            <p class="sidebar-sub-header" style="font-family: bold;">Past</p>
+            <p class="sidebar-sub-header" style="font-weight: bold;">Past</p>
             <div class="active">
               <div class="list-unstyled" id="homeSubmenu">
                <% @past.each do |past_event| %>
