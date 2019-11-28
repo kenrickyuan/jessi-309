@@ -63,9 +63,9 @@
 //   transition: 0.6s;
 // }
 .wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
 }
 
 // .wrapper {
@@ -79,34 +79,55 @@
 // }
 
 #sidebar.active {
-    margin-left: -250px;
+  margin-left: -250px;
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
+  min-width: 250px;
+  max-width: 250px;
+    //min-height: 100vh;
+  }
+  .sidebar-content .list-unstyled .sidebar-sub-header{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+  }
 
+  div#mCSB_1_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+  }
+
+  .sidebar-content{
+    height:80%;
+  }
+
+  div#dismiss {
+    position: relative;
+    top: 36px;
+    left: 190px;
+  }
 // a[data-toggle="collapse"] {
 //     position: relative;
 // }
 
 .dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
 }
 
 
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
+#sidebar {
+  margin-left: -250px;
+}
+#sidebar.active {
+  margin-left: 0;
+}
 
 
 
@@ -115,17 +136,17 @@
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
     /* top layer */
     z-index: 9999;
-}
+  }
 
-.overlay {
+  .overlay {
     display: none;
     position: fixed;
     /* full screen */
@@ -138,22 +159,25 @@
     opacity: 0;
     /* animate the transition */
     transition: all 0.5s ease-in-out;
-}
+  }
 /* display .overlay when it has the .active class */
 .overlay.active {
-    display: block;
-    opacity: 1;
+  display: block;
+  opacity: 1;
 }
 
 #dismiss {
-    width: 35px;
-    height: 35px;
-    position: absolute;
+  width: 40px;
+  height: 40px;
+  position: absolute;
     /* top right corner of the sidebar */
     top: 1px;
     right: 1px;
-}
+  }
 
+  #dismiss .arrow {
+    background: none;
+  }
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left .5s; /* If you want a transition effect */
@@ -167,58 +191,82 @@
 }
 
 
+
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-    background: #472B62;
-    color: #fff;
+    background: #FE8180;
+    color: #472B62;
     transition: all 0.3s;
-}
+  }
 
-#sidebar .sidebar-header {
+  #sidebar .sidebar-header {
     /*padding: 20px;*/
-    background: #472B62;
-}
+    color: 472B62;
+    background: #FE8180;
+    font-weight: bold;
+  }
 
-#sidebar ul.components {
+  #sidebar ul.components {
     padding: 20px 0;
     border-bottom: 1px solid #47748b;
-}
+  }
 
-#sidebar ul p {
+  #sidebar ul p {
     color: #fff;
     padding: 10px;
-}
+  }
 
-#sidebar ul li a {
+  #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
     display: block;
-}
+  }
 // #sidebar ul li a:hover {
 //     color: #7386D5;
 //     background: #fff;
 // }
-#sidebar {
+#sidebar .sidebar-content {
   padding: 20px;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    text-decoration: none;
-    background: #472B62;
+  color: #fff;
+  text-decoration: none;
+  background: #472B62;
 }
 
 .list-unstyled .list-items-unstyled a {
-    text-decoration: none;
-    color: white;
-}
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #472B62;
+  text-decoration: none;
+  color: #472B62;
+  font-weight: bold;
+  margin-left: 1rem;
 }
 
-#sidebar .sidebar-logoutbtn{
-    position: sticky-bottom;
+.list-unstyled .list-items-unstyled a.active {
+
+}
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: #472B62;
+}
+
+#sidebar .sidebar-logoutbtn a{
+  position: sticky-bottom;
+  color:white;
+  text-decoration:none;
+  display: flex;
+  justify-content: center;
+  background-color: #472B62;
+  color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+.mCS_img_loaded {
+  background-color: white;
 }
 
