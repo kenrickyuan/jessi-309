@@ -72,6 +72,7 @@ class ExpensesController < ApplicationController
 
   def set_transaction_details(transaction)
     transaction_details = {}
+    transaction_details[:id] = transaction.id
     transaction_details[:payer] = transaction.payer
     transaction_details[:payee] = transaction.payee
     transaction_details[:datetime] = transaction.created_at
