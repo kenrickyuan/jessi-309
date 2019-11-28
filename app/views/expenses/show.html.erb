@@ -1,4 +1,4 @@
-<div class="navbar px-4 d-flex justify-content-between" style="height: 60px; background-color: #FE8180;">
+<div class="navbar px-4 d-flex justify-content-between sticky-top" style="height: 60px; background-color: #FE8180;">
   <%= link_to image_tag('back-arrow.png', height: '22', width: '20'), event_expenses_path(@event) %>
   <h5 class="mb-0" style="font-family: Noto Sans; font-weight: bold; color: #472B62"><%= @expense[:description] %></h5>
   <div style="width: 22px"></div>
@@ -6,34 +6,67 @@
 
 <!-- Latest settlement/debt transaction -->
 <% @payment_transactions_hash.each_value do |transaction| %>
-<% if transaction[:difference] == 0 %>
-<h5><%= transaction[:payer].name.capitalize %> has setted up with <%= transaction[:payee].name.capitalize %>!</h5>
-<% else %>
-<h5><%= transaction[:payer].name.capitalize %> now owes <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
-<% end %>
+  <% if transaction[:difference] == 0 %>
+
+  <div class="px-4 py-3">
+    <h5 style="color: #472B62;"><%= transaction[:payer].name.capitalize %> has setted up with <%= transaction[:payee].name.capitalize %>!</h5>
+  </div>
+  <hr style="border-width: 6px; background-color: #FE8180;" class="m-0">
+
+  <% else %>
+
+  <div class="px-4 py-3">
+    <h5 style="color: #472B62;"><%= transaction[:payer].name.capitalize %> now owes <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
+  </div>
+  <hr style="border-width: 6px; background-color: #FE8180;" class="m-0">
+
+  <% end %>
 <% end %>
 
-<h4>History</h4>
+<div class="px-4 py-4">
+  <h4 class="text-center" style="color: #472B62;">History</h4>
+</div>
+<hr style="border-width: 2px;" class="m-0">
+
 <!-- Latest payment transaction -->
 <% @payment_transactions_hash.each_value do |transaction| %>
-<% next if transaction[:is_debt] == true %>
-<%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
-<h5><%= transaction[:payer].name.capitalize %> paid <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+  <% next if transaction[:is_debt] == true %>
+  <div class="px-4 py-2">
+    <h6><%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %></h6>
+    <h5 class="m-0"><%= transaction[:payer].name.capitalize %> paid <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+  </div>
+  <hr style="border-width: 4px;" class="m-0">
 <% end %>
 
 <!-- History of transactions -->
 <% @payment_transactions.reverse.each do |transaction| %>
-<%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
-<h5><%= transaction[:payer].name.capitalize %> owes <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
-<% next if transaction[:is_debt] == true %>
-<%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
-<h5><%= transaction[:payer].name.capitalize %> paid <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+  <div class="px-4 py-2">
+    <h6><%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %></h6>
+    <h5 class="m-0"><%= transaction[:payer].name.capitalize %> owes <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:difference] %></h5>
+  </div>
+  <hr style="border-width: 4px;" class="m-0">
+
+  <% next if transaction[:is_debt] == true %>
+
+  <div class="px-4 py-2">
+    <%= transaction[:datetime].strftime("%d %b %Y, %H:%M") %>
+    <h5 class="m-0"><%= transaction[:payer].name.capitalize %> paid <%= transaction[:payee].name.capitalize %> <%= humanized_money_with_symbol transaction[:amount] %></h5>
+  </div>
+  <hr style="border-width: 4px;" class="m-0">
 <% end %>
 
 <!-- The expense -->
-<%= @expense.created_at.strftime("%d %b %Y, %H:%M") %>
-<h5><%= @expense.guest.name.capitalize %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %></h5>
+<div class="px-4 py-2">
+  <%= @expense.created_at.strftime("%d %b %Y, %H:%M") %>
+  <h5 class="m-0"><%= @expense.guest.name.capitalize %> paid <%= humanized_money_with_symbol @expense.amount %> for <%= @expense.description %></h5>
+</div>
+
 <hr style="border-width: 4px;" class="m-0">
 
+<!-- makes sure the last card isn't covered by the bottom btn -->
+<div style="height: 115px;"></div>
+
 <!-- New transaction -->
-<%= link_to "Settle up", new_event_expense_transaction_path(params[:event_id], @expense) %>
+<div class="bottom-btn">
+  <%= link_to "Settle up", new_event_expense_transaction_path(params[:event_id], @expense), class: "submit-btn" %>
+</div>

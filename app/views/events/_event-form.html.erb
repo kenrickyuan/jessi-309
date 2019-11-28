@@ -9,9 +9,13 @@
   <hr style="border-width: 4px;" class="m-0">
   <%= f.input :end_time, as: 'string', input_html: {class: 'picker'} %>
   <hr style="border-width: 4px;" class="m-0">
-  <%= f.input :description %>
+  <%= f.input :description, as: :text, input_html: {:style => 'height: 30vh; padding-right: 1rem;'} %>
+
   <hr style="border-width: 4px;" class="m-0">
 </div>
+
+<!-- makes sure the last card isn't covered by the bottom btn -->
+<div style="height: 115px;"></div>
 
 <div class="bottom-btn">
   <%= f.button :submit, "Save", class: "submit-btn" %>
