@@ -44,5 +44,8 @@
 // if (myBar.open)
 // document.getElementById("demo").innerHTML = myBar.present("Hello");
 
+// Get the container element
+
+
 
 

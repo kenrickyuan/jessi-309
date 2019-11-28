@@ -201,7 +201,7 @@
 
   #sidebar .sidebar-header {
     /*padding: 20px;*/
-    color: 472B62;
+    color: #472B62;
     background: #FE8180;
     font-weight: bold;
   }
@@ -242,7 +242,9 @@
   margin-left: 1rem;
 }
 
-.list-unstyled .list-items-unstyled a.active {
+div.active2 {
+  background: #472B62;
+  color: #FE8180 !important;
 
 }
 ul ul a {
