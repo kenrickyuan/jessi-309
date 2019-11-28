@@ -10,51 +10,68 @@
     </div>
     <% if !(@current.empty?) %>
     <div class="list-unstyled components">
+
       <p class="sidebar-sub-header py-4">Today</p>
-        <div class="active">
-          <div class="list-unstyled" id="homeSubmenu">
-            <% @current.each do |current_event| %>
-              <div class="list-items-unstyled <% if current_page?(event_path(current_event)) %>active2<% end %>">
-                <%= link_to current_event.title, event_path(current_event), class: "link_event" %>
-              </div>
-            <% end %>
-          </div>
+      <div class="active">
+        <div class="list-unstyled" id="homeSubmenu">
+         <% @current.each do |current_event| %>
+         <div class="list-items-unstyled">
+          <%= link_to current_event.title, event_path(current_event) %>
         </div>
+        <% end %>
       </div>
       <% end %>
       <% if !(@pending.empty?) %>
-        <div class="list-unstyled components">
-          <p class="sidebar-sub-header">Upcoming</p>
-          <div class="active">
-            <div class="list-unstyled" id="homeSubmenu">
-              <% @pending.each do |pending_event| %>
-                <div class="list-items-unstyled <% if current_page?(event_path(pending_event)) %>active2<% end %>">
-                  <%= link_to pending_event.title, event_path(pending_event), class: "link_event" %>
-                </div>
-              <% end %>
+      <div class="list-unstyled components">
+        <p class="sidebar-sub-header">Upcoming</p>
+        <div class="active">
+
+          <div class="list-unstyled" id="homeSubmenu">
+            <% @pending.each do |pending_event| %>
+            <div class="list-items-unstyled">
+              <%= link_to pending_event.title, event_path(pending_event) %>
             </div>
+            <% end %>
           </div>
-        </div>
-      <% end %>
+          <% end %>
           <% if !(@past.empty?) %>
-        <div class="list-unstyled components">
-          <p class="sidebar-sub-header">Past</p>
+          <div class="list-unstyled components">
+            <p class="sidebar-sub-header">Past</p>
             <div class="active">
               <div class="list-unstyled" id="homeSubmenu">
                <% @past.each do |past_event| %>
-                <div class="list-items-unstyled <% if current_page?(event_path(past_event)) %>active2<% end %>">
-                <%= link_to past_event.title, event_path(past_event), class: "link_event" %>
-                </div>
-               <% end %>
+               <div class="list-items-unstyled">
+                <%= link_to past_event.title, event_path(past_event) %>
               </div>
-            <% end %>
+              <% end %>
             </div>
+            <% end %>
           </div>
         </div>
-        <div class="sidebar-logoutbtn">
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-        </div>
-          </div>
+            <!-- <li>
+                <a href="#">About</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+              </li> -->
+            </div>
+            <div class="sidebar-logoutbtn">
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            </div>
+            <!-- <li>
+                <a href="#">Contact</a>
+              </li> -->
+
+            </div>
 
             <!-- Page Content -->
 
@@ -87,7 +104,6 @@
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
           });
               });
-
             </script>
 
             <% end %>
