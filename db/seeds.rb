@@ -9,7 +9,7 @@
 Event.destroy_all
 User.destroy_all
 User.create!(
-  name: "mark",
+  name: "Mark",
   email: 'mark_ruffalo@icloud.com',
   password: 'testing123'
   )

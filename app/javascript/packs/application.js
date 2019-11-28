@@ -1,22 +1,22 @@
 import "bootstrap";
 import $ from 'jquery';
 
-// import "../pluggins/easteregg";
+// import "../plugins/easteregg";
 // import "../plugins/datepicker"
-// import "../pluggins/choices";
-// import "../pluggins/guests";
-// import "../pluggins/typewriter";
-// import "../pluggins/sidebar";
-// import "../pluggins/sidebarclose";
+// import "../plugins/choices";
+// import "../plugins/guests";
+// import "../plugins/typewriter";
+// import "../plugins/sidebar";
+// import "../plugins/sidebarclose";
 import "../plugins/clipboard";
 
 
 import iniDatePicker from "../plugins/datepicker";
-import initMultipleChoices from "../pluggins/choices";
-import initMultipleGuests from "../pluggins/guests";
-import TypeWriter from "../pluggins/typewriter";
-// import initSidebar from "../pluggins/sidebar";
-// import "../pluggins/sidebarclose";
+import initMultipleChoices from "../plugins/choices";
+import initMultipleGuests from "../plugins/guests";
+import TypeWriter from "../plugins/typewriter";
+// import initSidebar from "../plugins/sidebar";
+// import "../plugins/sidebarclose";
 
 
 iniDatePicker();
