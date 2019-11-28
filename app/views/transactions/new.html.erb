@@ -10,7 +10,7 @@
     <%= f.association :payer, collection: @guests, label: "Who?" %>
     <h5 class="mx-3 text-center" style="color: #472B62; font-weight: bold;">paid</h5>
     <%= f.input :amount, input_html: { value: "" }, label: "How much?" %>
-    <h5 class="mx-3 mb-4 text-center" style="color: #472B62; font-weight: bold;">to <%= @expense.guest.name.capitalize %></h5>
+    <h5 class="mx-3 mb-4 text-center" style="color: #472B62; font-weight: bold;">to <%= @expense.guest.name %></h5>
   </div>
 </div>
 

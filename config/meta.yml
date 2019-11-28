@@ -1,0 +1,6 @@
+# config/meta.yml
+
+meta_product_name: "Jessi.io"
+meta_title: "jessi - A platform that fulfills all your social event planning needs"
+meta_description: "As a user you can track, organise and submit polls to manage your event within your social network."
+meta_image: "cover.png" # should exist in `app/assets/images/`
