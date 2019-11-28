@@ -6,6 +6,24 @@
   }
 }
 
+.landing-card {
+  height: 100vh;
+}
+
+.landing-card-first {
+  height: 92vh;
+}
+
+@media only screen and (max-height: 735px) {
+  .landing-card {
+    height: 800px;
+  }
+  .landing-card-first {
+    height: 800px;
+  }
+}
+
+
 #title {
   font-size: 3rem;
   font-weight: bold;
