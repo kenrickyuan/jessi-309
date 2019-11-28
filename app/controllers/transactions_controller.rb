@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.created_at = Time.now()
     @transaction.expense_id = @expense.id
     @transaction.payee = @expense.guest
     @transaction.payer = Guest.find(params[:transaction][:payer_id].to_i)
