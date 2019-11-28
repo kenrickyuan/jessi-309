@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_sidebar, only: [:show]
 
   def index
     @events = Event.where(user: current_user.id).order('start_time')
@@ -58,10 +59,13 @@ class EventsController < ApplicationController
     # client= key is the api key from addevent.com
     @link_google = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
     @link_apple = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
-    @share_message = "#{@event.title}
-    Add to your Apple calendar:
+    @share_message =
+    "Click the links below to add '#{@event.title}' to your calendar!
+
+    Apple calendar:
     #{@link_apple}
-    Add to your Google calendar:
+
+    Google calendar:
     #{@link_google}"
   end
 
@@ -79,8 +83,5 @@ class EventsController < ApplicationController
         @current << event
       end
     end
-    @past
-    @pending
-    @current
   end
 end

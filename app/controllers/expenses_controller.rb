@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_event, only: [:new, :create, :index, :show]
+  before_action :set_sidebar, only: [:index]
 
   def new
     @expense = Expense.new
@@ -111,5 +112,21 @@ class ExpensesController < ApplicationController
 
   def filter_by_guest
     @expenses = @expenses.where(guest: params[:search][:guest])
+  end
+
+  def set_sidebar
+    @events = Event.where(user: current_user.id).order('start_time')
+    @past = []
+    @pending = []
+    @current = []
+    @events.each do |event|
+      if event.start_time.nil? || event.start_time > Time.now
+        @pending << event
+      elsif event.start_time < Time.now || event.end_time < Time.now
+        @past << event
+      else
+        @current << event
+      end
+    end
   end
 end

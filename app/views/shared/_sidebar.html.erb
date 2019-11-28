@@ -15,7 +15,7 @@
         <div class="active">
           <div class="list-unstyled" id="homeSubmenu">
             <% @current.each do |current_event| %>
-            <div class="list-items-unstyled">
+            <div class="list-items-unstyled ml-2">
               <%= link_to current_event.title, event_path(current_event) %>
             </div>
             <% end %>
@@ -29,7 +29,7 @@
           <div class="active">
             <div class="list-unstyled" id="homeSubmenu">
                 <% @pending.each do |pending_event| %>
-              <div class="list-items-unstyled">
+              <div class="list-items-unstyled ml-2">
                 <%= link_to pending_event.title, event_path(pending_event) %>
               </div>
                 <% end %>
@@ -43,7 +43,7 @@
             <div class="active">
               <div class="list-unstyled" id="homeSubmenu">
                <% @past.each do |past_event| %>
-                <div class="list-items-unstyled">
+                <div class="list-items-unstyled ml-2">
                 <%= link_to past_event.title, event_path(past_event) %>
                 </div>
                 <% end %>

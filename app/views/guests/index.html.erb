@@ -14,7 +14,7 @@
   <% user = @guests.first %>
   <div class="card mt-4">
     <a class="text-decoration-none" href="<%= edit_event_guest_path(@event, user) %>">
-      <h5 class="mb-3 text-center" style="color: #472B62;"><%= user.name %></h5>
+      <h5 class="mb-3 text-center" style="color: #472B62;"><%= user.name.capitalize %></h5>
       <p align="center" class="mb-2" style="color: #646464;">This is you!</p>
     </a>
   </div>
@@ -23,7 +23,7 @@
   <% next if guest == @guests.first %>
   <div class="card mt-4">
     <a class="text-decoration-none" href="<%= edit_event_guest_path(@event, guest) %>">
-      <h5 class="mb-3 text-center" style="color: #472B62;"><%= guest.name %></h5>
+      <h5 class="mb-3 text-center" style="color: #472B62;"><%= guest.name.capitalize %></h5>
     </a>
     <div class="d-flex justify-content-between">
       <a class="text-decoration-none" href="<%= edit_event_guest_path(@event, guest) %>" style="width: 70%;"></a>
