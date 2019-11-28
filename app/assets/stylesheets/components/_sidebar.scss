@@ -100,18 +100,18 @@
     transform: translateY(-50%);
 }
 
-@media (max-width: 768px) {
+
     #sidebar {
         margin-left: -250px;
     }
     #sidebar.active {
         margin-left: 0;
     }
-}
+
 
 
 .wrapper {
-    display: block;
+  display: block;
 }
 
 #sidebar {
@@ -150,8 +150,8 @@
     height: 35px;
     position: absolute;
     /* top right corner of the sidebar */
-    top: 10px;
-    right: 10px;
+    top: 1px;
+    right: 1px;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -175,7 +175,7 @@
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    /*padding: 20px;*/
     background: #472B62;
 }
 
@@ -198,6 +198,9 @@
 //     color: #7386D5;
 //     background: #fff;
 // }
+#sidebar {
+  padding: 20px;
+}
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
@@ -213,5 +216,9 @@ ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: #472B62;
+}
+
+#sidebar .sidebar-logoutbtn{
+    position: sticky-bottom;
 }
 

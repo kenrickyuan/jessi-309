@@ -1,53 +1,53 @@
 
 <!-- Sidebar -->
-<nav id="sidebar">
+<div id="sidebar">
 
   <div id="dismiss">
     <i class="fas fa-arrow-left"></i>
   </div>
 
   <div class="sidebar-header">
-    <h3>Your Events</h3>
+    <h4>Your Events</h4>
   </div>
   <% if !(@current.empty?) %>
-  <ul class="list-unstyled components">
+  <div class="list-unstyled components">
 
     <p class="sidebar-sub-header">Today</p>
-    <li class="active">
-      <ul class="list-unstyled" id="homeSubmenu">
+    <div class="active">
+      <div class="list-unstyled" id="homeSubmenu">
        <% @current.each do |current_event| %>
-       <li class="list-items-unstyled">
+       <div class="list-items-unstyled">
         <%= link_to current_event.title, event_path(current_event) %>
-      </li>
+      </div>
       <% end %>
-    </ul>
+    </div>
     <% end %>
     <% if !(@pending.empty?) %>
-    <ul class="list-unstyled components">
+    <div class="list-unstyled components">
       <p class="sidebar-sub-header">Upcoming</p>
-      <li class="active">
+      <div class="active">
 
-        <ul class="list-unstyled" id="homeSubmenu">
+        <div class="list-unstyled" id="homeSubmenu">
           <% @pending.each do |pending_event| %>
-          <li class="list-items-unstyled">
+          <div class="list-items-unstyled">
             <%= link_to pending_event.title, event_path(pending_event) %>
-          </li>
+          </div>
           <% end %>
-        </ul>
+        </div>
         <% end %>
         <% if !(@past.empty?) %>
-        <ul class="list-unstyled components">
+        <div class="list-unstyled components">
           <p class="sidebar-sub-header">Past</p>
-          <li class="active">
-            <ul class="list-unstyled" id="homeSubmenu">
+          <div class="active">
+            <div class="list-unstyled" id="homeSubmenu">
              <% @past.each do |past_event| %>
-             <li class="list-items-unstyled">
+             <div class="list-items-unstyled">
               <%= link_to past_event.title, event_path(past_event) %>
-            </li>
+            </div>
             <% end %>
-          </ul>
+          </div>
           <% end %>
-            </li>
+            </div>
             <!-- <li>
                 <a href="#">About</a>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
@@ -63,14 +63,14 @@
                     </li>
                 </ul>
             </li> -->
-            <li class="sidebar-header">
+            <div class="sidebar-logoutbtn">
                 <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-            </li>
+            </div>
             <!-- <li>
                 <a href="#">Contact</a>
             </li> -->
-          </ul>
-        </nav>
+          </div>
+        </div>
 
         <!-- Page Content -->
 
