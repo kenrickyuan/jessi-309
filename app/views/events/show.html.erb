@@ -6,10 +6,10 @@
 <div class="px-4">
   <div class="card my-4">
     <div class="pb-4">
-      <h5 style="font-weight: bold; font-family: Noto Sans; color: #472B62;"><%= @event.title %></h5>
+      <h4 style="font-weight: bold; color: #472B62;"><%= @event.title %></h4>
     </div>
     <div class="divider mb-3">
-      <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Time</h5>
+      <h5 class="mb-3" style="color: #472B62;">Time</h5>
       <% if @event.start_time.present? %>
       <p class="mb-2"><%= @event.start_time.strftime("%d %b %Y, %H:%M") %></p>
       <p><%= @event.end_time.strftime("%d %b %Y, %H:%M") %></p>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="divider mb-3">
-      <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Location</h5>
+      <h5 class="mb-3" style="color: #472B62;">Location</h5>
       <% if @event.location.present? %>
       <p><%= @event.location %></p>
       <% else %>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="mb-3">
-      <h5 class="mb-2" style="font-family: Noto Sans; color: #472B62;">Description</h5>
+      <h5 class="mb-2" style="color: #472B62;">Description</h5>
       <% if @event.description.present? %>
       <p><%= simple_format(@event.description) %></p>
       <% else %>
@@ -44,7 +44,7 @@
 
   <!-- same as <a href="<%= event_guests_path(@event) %>" class="card text-decoration-none"></a> -->
   <%= link_to event_guests_path(@event), class: "card text-decoration-none mb-4" do  %>
-    <h5 class="mb-3" style="font-family: Noto Sans; color: #472B62;">Guests</h5>
+    <h5 class="mb-3" style="color: #472B62;">Guests</h5>
     <p class="mb-0" style="color: #646464;"><%= @event.guests.count %> going</p>
     <span class="d-flex justify-content-end">
       <%= image_tag('forward-arrow.png', height: '25', width: '22') %>
