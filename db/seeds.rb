@@ -9,16 +9,18 @@
 Event.destroy_all
 User.destroy_all
 User.create!(
-  name: "Mark",
-  email: 'mark_ruffalo@icloud.com',
+  name: "Kristina",
+  email: 'kristina_head@icloud.com',
   password: 'testing123'
   )
 
 Event.create!(
-  title: "Our First Product Pitch",
-  location: "Amsterdam",
-  start_time: "2019-12-08 10:19:00 -0200",
-  end_time: "2019-12-08 11:19:00 -0200",
-  description: "Bring your pampers!",
+  title: "Weekend at Rotterdam",
+  location: "Westersingel 1A, 3014 GM, Rotterdam",
+  start_time: "2019-10-25 10:19:00 -0200",
+  end_time: "2019-10-27 11:19:00 -0200",
+  description: "We will be going to a market on Saturday where you have to pay with cash, so don't forget to stop by an ATM beforehand! I'm so excited to see you guys on Friday and make this a weekend to remember!",
   user: User.first
   )
+
+Guest.create!(name: "Kristina", event: Event.find(1))
