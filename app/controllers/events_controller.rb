@@ -37,8 +37,13 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event.destroy
-    redirect_to events_path
+    @event.destroy!
+    @events = Event.where(user: current_user.id).order('start_time')
+    if @events.empty?
+      redirect_to welcome_path
+    else
+      redirect_to event_path(@events.last)
+    end
   end
 
   private
