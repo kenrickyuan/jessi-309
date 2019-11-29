@@ -7,7 +7,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    set_event_link if @event.start_time.present?
+    set_event_alert
+    set_event_link
   end
 
   def new
@@ -56,13 +57,26 @@ class EventsController < ApplicationController
     title = CGI.escape(@event.title)
     description = CGI.escape(@event.description)
     location = CGI.escape(@event.location)
-    # client= key is the api key from addevent.com
-    @link_google = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
-    @link_apple = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
-    @share_message = "Click the links below to add #{@event.title} to your calendar! Apple calendar: #{@link_apple}
 
-    Google calendar:
-    #{@link_google}"
+    if @event.start_time.present? && @event.start_time < @event.end_time
+      @link_google = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=google"
+      @link_apple = "https://www.addevent.com/dir/?client=aaszNLrTvzxLzJhVOmIz78679&start=#{start_date}&end=#{end_date}&title=#{title}&description=#{description}&location=#{location}&service=apple"
+      @share_message =
+      "I created an event with jessi.io!\nClick the links below to push the event to your calendar\n \nApple calendar:\n#{@link_apple}\n \nGoogle calendar:\n#{@link_google}"
+    else
+      return
+    end
+    # client= key is the api key from addevent.com
+  end
+
+  def set_event_alert
+    if @event.start_time.present? && @event.start_time < @event.end_time
+      @alert_message = "alert('Event links saved to your clipboard, paste it to your guests!')"
+    elsif !@event.start_time.present?
+      @alert_message = "alert('Your event has no start time! I cannot create a calendar link without it!')"
+    else
+      @alert_message = "alert('Your event ends before it starts! I cannot create a calendar link for something like that!')"
+    end
   end
 
   def set_sidebar
