@@ -1,7 +1,7 @@
 <div class="container mt-5">
 
 <div class="text-center">
-  <a href="<%= root_path %>" class="links" style="font-size: 4rem; color: #472B62; font-weight: bold;">jessi</a>
+  <%= link_to image_tag('jessi-logo-navbar.png', height: '53', width: '140'),  root_path %>
 </div>
 <div class="d-flex w-50 mt-4 justify-content-center" style="margin: 0 auto;">
   <h5 class="pr-1 pb-2" style="color: #472B62; text-decoration: none;"><%= link_to "login", new_user_session_path, class: 'links' %></h5>
