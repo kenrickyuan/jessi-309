@@ -123,7 +123,7 @@ class PollsController < ApplicationController
     else
       show.each do |elements|
         # Some of the typeform responses are NULL, when someone submits a form without putting an answer in "other"
-        if elements["answers"].nil?
+        if elements["answers"].nil? || elements["answers"].empty?
           next
         else
           # Refactor this later
