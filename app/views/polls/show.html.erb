@@ -6,17 +6,17 @@
 
 <div class="p-3 d-flex justify-content-around flex-column" style="color: #472B62; height: 102px;">
   <h5 class="m-0"><%= @poll.question %></h5>
-  <% if @length == 1 %>
-  <p class="m-0"><%= @length %> response</p>
+  <% if @poll.response_number == 1 %>
+    <p class="m-0">1 response</p>
   <% else %>
-  <p class="m-0"><%= @length %> responses</p>
+    <p class="m-0"><%= @poll.response_number %> responses</p>
   <% end %>
 </div>
 
 <hr style="border-width: 6px; background-color: #FE8180;" class="m-0">
 
 
-<% @sorted_count.each do |key, value| %>
+<% @sorted_answer_count.each do |key, value| %>
   <div class="p-3 d-flex justify-content-between" style="color: #472B62;">
     <div d-flex align-items-center>
       <h5 class="my-2"><%= key %></h5>

@@ -33,10 +33,10 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     @event = Event.find(params[:event_id])
     @poll.event = @event
-    choic = []
+    choices_array = []
 
     params["choices"].each do |choice|
-      choic << { label:choice }
+      choices_array << { label:choice }
     end
 
     body = {
@@ -48,7 +48,7 @@ class PollsController < ApplicationController
           "description": "#{@poll.question}",
           "allow_multiple_selection": true,
           "allow_other_choice": true,
-          "choices": choic
+          "choices": choices_array
           }
         }
       ]
@@ -122,27 +122,34 @@ class PollsController < ApplicationController
       poll.response_number = 0
     else
       show.each do |elements|
-        elements["answers"].each do |answer|
-          if !answer["choices"]["other"].nil?
-            responses << answer["choices"]["other"]
+        # Some of the typeform responses are NULL, when someone submits a form without putting an answer in "other"
+        if elements["answers"].nil?
+          next
+        else
+          # Refactor this later
+          if elements["answers"].first["choices"]["other"].present?
+            responses << elements["answers"].first["choices"]["other"]
           end
-          if !answer["choices"]["labels"].nil?
-            responses << answer["choices"]["labels"]
+          if elements["answers"].first["choices"]["labels"].present?
+            responses << elements["answers"].first["choices"]["labels"]
           end
         end
       end
-      @count = Hash.new(0)
+      answer_count = Hash.new(0)
       responses.flatten.each do |label|
-        @count[label] += 1
+        answer_count[label] += 1
       end
-      @count
-      @length = show.length
-      poll.responses = @count
-      poll.response_number = @length
+
+      length = 0
+      answer_count.each do |key, value|
+        length += value
+      end
+      poll.responses = answer_count
+      poll.response_number = length
 
       @sum = 0
-      @sorted_count = @count.sort_by {|k, v| -v}
-      @count.each do |key, value|
+      @sorted_answer_count = answer_count.sort_by {|k, v| -v}
+      answer_count.each do |key, value|
         @sum += value
       end
     end
